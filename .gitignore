@@ -1,0 +1,7 @@
+
+src/.vscode/
+src/Unity/.vscode/
+src/Unity/Library/
+.DS_Store
+src/Unity/Temp/
+src/Unity/Logs/
