@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Main : MonoBehaviour
 {
+    [SerializeField]
+    TextMeshProUGUI amountText;
+    [SerializeField]
+    TextMeshProUGUI hashtagText;
+    [SerializeField]
+    TextMeshProUGUI likeText;
+
     Fans fans;
     // Start is called before the first frame update
     void Start()
@@ -20,12 +27,19 @@ public class Main : MonoBehaviour
         buffs.Add("like_bonus", 1.2f);
         this.fans.Init(data, buffs);
         InvokeRepeating("RefreshAndReval", 1, 1);
+
+        amountText.text = this.fans.GetData("amount").ToString();
+        hashtagText.text = this.fans.GetData("hashtag").ToString();
+        likeText.text = this.fans.GetData("like").ToString();
     }
 
     void RefreshAndReval()
     {
         this.fans.Refresh();
         this.fans.Reveal();
+        amountText.text = this.fans.GetData("amount").ToString();
+        hashtagText.text = this.fans.GetData("hashtag").ToString();
+        likeText.text = this.fans.GetData("like").ToString();
     }
     
     void OnDisable()
