@@ -1,38 +1,95 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using BuffSystem;
 public class Fans : AutoRunObjectBase
 {
-    private bool _status;
+
     void Start()
     {
+        // this._data = new Dictionary<string, float>
+        // {
+        //     {"Zombie Fans", 0.0f},
+        //     {"Real Fans", 0.0f},
+        //     {"Haters", 0.0f},
+        // };
+        
         Debug.Log("Fans Start");
     }
 
     // Refresh is called to update data and buff
     public override void Refresh()
     {
-        Debug.Log("Fans Update");
-        // Here we implement our own logic
-        _data["amount"] *= _buffs["amount_bonus"];
-        _data["hashtag"] *= _buffs["hashtag_bonus"];
-        _data["like"] *= _buffs["like_bonus"];
+        if (this._buffs.Count > 0)
+        {
+            foreach (BuffBase buff in this._buffs)
+            {
+                buff.OnUpdate();
+            }
+            this._buffs.RemoveAll(buff => buff.timer >= buff.duration);
+        }
     }
 
     // reveal whole data and buff, debug only
     public override void Reveal()
     {
         string dataStr = "";
-        foreach (KeyValuePair<string, float> kvp in _data)
+        if (this._data != null && this._data.Count > 0)
         {
-            dataStr += kvp.Key + ":" + kvp.Value + " ";
+            foreach (KeyValuePair<string, float> kvp in this._data)
+            {
+                dataStr += kvp.Key + ":" + kvp.Value + " ";
+            }
         }
         string buffStr = "";
-        foreach (KeyValuePair<string, float> kvp in _buffs)
+        if (this._buffs != null && this._buffs.Count > 0)
         {
-            buffStr += kvp.Key + ":" + kvp.Value + " ";
+            foreach (BuffBase buff in this._buffs)
+            {
+                buffStr += buff.buffName + ":" + buff.timer + " ";
+            }
         }
         Debug.Log("Reveal Fans ! \n" + "Fans Data: " + dataStr + " Fans Buff: " + buffStr);
+    }
+
+    public override string RevealBuff()
+    {
+        string buffStr = "";
+        if (this._buffs != null && this._buffs.Count > 0)
+        {
+            buffStr = "Fans Buff: ";
+            foreach (BuffBase buff in this._buffs)
+            {
+                buffStr += buff.buffName + ":";
+                foreach (KeyValuePair<string, float> kvp in buff.target_effects)
+                {
+                    buffStr += kvp.Key;
+                    if (buff.m_buffType == BuffBase.buffType.Addition)
+                    {
+                        if (kvp.Value > 0)
+                        {
+                            buffStr += "每回合增加" + kvp.Value + " ";
+                        }
+                        else if (kvp.Value < 0)
+                        {
+                            buffStr += "每回合减少" + (-kvp.Value) + " ";
+                        }
+                    }
+                    else if (buff.m_buffType == BuffBase.buffType.Multiplication)
+                    {
+                        if (kvp.Value > 1)
+                        {
+                            buffStr += "每回合增加" + (kvp.Value - 1) * 100 + "% ";
+                        }
+                        else if (kvp.Value < 1)
+                        {
+                            buffStr += "每回合减少" + (1 - kvp.Value) * 100 + "% ";
+                        }
+                    }
+                }
+                buffStr += "剩余时间:" + (buff.duration-buff.timer) + "/" + buff.duration + " ";
+            }
+        }
+        return buffStr;
     }
 }

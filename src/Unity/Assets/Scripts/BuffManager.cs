@@ -1,86 +1,91 @@
 
 using System;
 using System.Collections.Generic;
-
-public class BuffManager
+using UnityEngine;
+using System.Linq;
+namespace BuffSystem
 {
-    private Dictionary<string, bool> buffStatus;
-
-    public BuffManager()
+    public class BuffBase
     {
-        buffStatus = new Dictionary<string, bool>();
-    }
+        public enum buffType //区分加法和乘法
+        {
+            Addition,
+            Multiplication,
+        }
+        public buffType m_buffType;
+        public int buffID;
+        public string buffName;
+        public float timer;
+        public float duration;
+        public AutoRunObjectBase target_object;
+        public Dictionary<string, float> target_effects; //目标数值的名称和对应的buff值
 
-    public void AddBuff(string buffName)
-    {
-        if (!buffStatus.ContainsKey(buffName))
+        public BuffBase(buffType buffType, int buffID, string buffName, float duration, AutoRunObjectBase target_object, Dictionary<string, float> target_effects)
         {
-            buffStatus.Add(buffName, false);
-            Console.WriteLine($"{buffName} added to BuffManager.");
+            this.m_buffType = buffType;
+            this.buffID = buffID;
+            this.buffName = buffName;
+            this.duration = duration;
+            this.target_object = target_object;
+            this.target_effects = target_effects;
         }
-        else
-        {
-            Console.WriteLine($"{buffName} is already present in BuffManager.");
-        }
-    }
 
-    public void RemoveBuff(string buffName)
-    {
-        if (buffStatus.ContainsKey(buffName))
+        public virtual void OnAdd() //由 target object 在添加此buff时候调用
         {
-            buffStatus.Remove(buffName);
-            Console.WriteLine($"{buffName} removed from BuffManager.");
+            if (m_buffType == buffType.Addition)
+            {
+                foreach (KeyValuePair<string, float> kvp in target_effects)
+                {
+                    target_object._data[kvp.Key] += kvp.Value;
+                }
+            }
+            else if (m_buffType == buffType.Multiplication)
+            {
+                foreach (KeyValuePair<string, float> kvp in target_effects)
+                {
+                    target_object._data[kvp.Key] *= kvp.Value;
+                }
+            }
+            timer = 0;
         }
-        else
+        public virtual void OnUpdate() //在 target object 的 Refresh() 中调用
         {
-            Console.WriteLine($"{buffName} is not present in BuffManager.");
+            timer += 1;
+            if (timer > duration)
+            {
+                OnRemove(); //超时，移除buff
+            }
+            else //刷新目标的数据
+            {
+                if (buffType.Addition == m_buffType)
+                {
+                    foreach (KeyValuePair<string, float> kvp in target_effects)
+                    {
+                        target_object._data[kvp.Key] += kvp.Value;
+                    }
+                }
+                else if (buffType.Multiplication == m_buffType)
+                {
+                    foreach (KeyValuePair<string, float> kvp in target_effects)
+                    {
+                        target_object._data[kvp.Key] *= kvp.Value;
+                    }
+                }
+            }
         }
-    }
-
-    public void ToggleBuff(string buffName)
-    {
-        if (buffStatus.ContainsKey(buffName))
+        public virtual void OnRemove() //由 target object 移除此buff时使用
         {
-            buffStatus[buffName] = !buffStatus[buffName];
-            Console.WriteLine($"{buffName} toggled. Current status: {buffStatus[buffName]}");
-        }
-        else
-        {
-            Console.WriteLine($"{buffName} is not present in BuffManager.");
-        }
-    }
-
-    public void PrintBuffStatus()
-    {
-        Console.WriteLine("BuffManager Status:");
-        foreach (var kvp in buffStatus)
-        {
-            Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+            //告知目标移除buff
+            target_object._buffs.Remove(this);
         }
     }
 }
 
-public abstract class Buff
-{
-    public string Name { get; protected set; }
-    public bool IsActive { get; protected set; }
+// TODO：需要写一个buff管理器，根据给定的buffID动态地实例化buffBase对象
+// 同时管理器也需要实现从Json读取buff配置的功能
+// 这里需要考虑是否把全部buff的配置都读取到内存中，还是只读取当前需要的buff配置
 
-    public Buff(string name)
-    {
-        Name = name;
-        IsActive = false;
-    }
-
-    public void Toggle()
-    {
-        IsActive = !IsActive;
-        Console.WriteLine($"{Name} toggled. Current status: {IsActive}");
-    }
-}
-
-public class Buff1 : Buff
-{
-    public Buff1() : base("Buff1")
-    {
-    }
-}
+// 后面我们还需要思考 buff如何与数值系统的内部运算（比如开局给定一个基础粉丝增速3%）结合：是先于数值系统的内部运算，还是后于数值系统的内部运算？
+// 此外，多个乘法buff之间如何叠加？
+// 乘法buff和加法buff之间怎么叠加？
+// 乘法buff和加法buff之间的运算顺序？

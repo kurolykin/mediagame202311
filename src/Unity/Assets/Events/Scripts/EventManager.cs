@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO; // 添加文件操作的命名空间
+using System.IO; 
+
+// 这个文件还没修改完！
 
 // 操作类型枚举类型
 // 新增一个枚举类型，表示不同的操作符
-public enum OperationType
+public enum Operators
 {
     Addition,
     Subtraction,
@@ -20,7 +22,6 @@ public struct Option
     public float value;  // 效果数值
     public string description; // 效果描述
     public float durationTime; // 效果持续时间
-    public OperationType operationType;
 }
 
 // 触发条件结构体定义
@@ -45,7 +46,7 @@ public struct EventChain
     public Event[] events;  // 包含多个事件的数组
 }
 
-public class EventManager : AutoRunObjectBase
+public class EventManager
 {
     private EventChain _eventChain;
     // Start is called before the first frame update
@@ -76,28 +77,28 @@ public class EventManager : AutoRunObjectBase
     }
 
     // buff导入函数
-    public override void BuffManager(Event eventInstance, int playerChioceIndex)
+    public void importBuff(Event eventInstance, int playerChioceIndex)
     {
-        AutoRunObjectBase autoRunObjectBase = new AutoRunObjectBase();
+    //     AutoRunObjectBase autoRunObjectBase = new AutoRunObjectBase();
 
-        // 检查选择索引是否在合法范围内
-        if (playerChoiceIndex >= 0 && playerChoiceIndex < eventInstance.eventOptions.Length)
-        {
-            Option selectedOption = eventInstance.eventOptions[playerChioceIndex];
+    //     // 检查选择索引是否在合法范围内
+    //     if (playerChoiceIndex >= 0 && playerChoiceIndex < eventInstance.eventOptions.Length)
+    //     {
+    //         Option selectedOption = eventInstance.eventOptions[playerChioceIndex];
 
-            Buff buff = new Buff(
-                eventInstance.eventOptions[playerChioceIndex].element,
-                eventInstance.eventOptions[playerChioceIndex].value,
-                eventInstance.eventOptions[playerChioceIndex].durationTime,
-                eventInstance.eventOptions[playerChioceIndex].description,
-                eventInstance.eventOptions[playerChioceIndex].operationType
-                );
+    //         Buff buff = new Buff(
+    //             eventInstance.eventOptions[playerChioceIndex].element,
+    //             eventInstance.eventOptions[playerChioceIndex].value,
+    //             eventInstance.eventOptions[playerChioceIndex].durationTime,
+    //             eventInstance.eventOptions[playerChioceIndex].description,
+    //             eventInstance.eventOptions[playerChioceIndex].operationType
+    //             );
         
-            autoRunObjectBase.SetBuff(buffGlobalIndex, buff);
-        }
-        else
-        {
-            Debug.Log("Failed to Add Buff!");
-        }
+    //         autoRunObjectBase.SetBuff(buffGlobalIndex, buff);
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("Failed to Add Buff!");
+    //     }
     }
 }

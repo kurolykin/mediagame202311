@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using BuffSystem;
 public class Main : MonoBehaviour
 {
     [SerializeField]
@@ -13,6 +14,8 @@ public class Main : MonoBehaviour
     TextMeshProUGUI likeText;
     [SerializeField]
     TextMeshProUGUI riotPowerText;
+    [SerializeField]
+    Text buffText;
     RiotPowerManager riotPowerManager;
     Fans fans;
     // Start is called before the first frame update
@@ -31,10 +34,10 @@ public class Main : MonoBehaviour
         data.Add("amount", 100);
         data.Add("hashtag", 100);
         data.Add("like", 100);
-        Dictionary<string, float> buffs = new Dictionary<string, float>();
-        buffs.Add("amount_bonus", 1.1f);
-        buffs.Add("hashtag_bonus", 1.005f);
-        buffs.Add("like_bonus", 1.2f);
+        List<BuffBase> buffs = new List<BuffBase>();
+        buffs.Add(new BuffBase(BuffBase.buffType.Addition, 1, "生育警察", 10, this.fans, new Dictionary<string, float> { { "amount", 100 } }));
+        buffs.Add(new BuffBase(BuffBase.buffType.Multiplication, 2, "计划生育", 30, this.fans, new Dictionary<string, float> { { "amount", 0.9f },
+        {"like", 0.7f} }));
         this.fans.Init(data, buffs);
         InvokeRepeating("RefreshAndReval", 1, 1);
 
@@ -61,7 +64,7 @@ public class Main : MonoBehaviour
         hashtagText.text = this.fans.GetData("hashtag").ToString();
         likeText.text = this.fans.GetData("like").ToString();
         riotPowerText.text = this.riotPowerManager.RiotPower.ToString();
-
+        buffText.text = this.fans.RevealBuff();
     }
     
     void OnDisable()
