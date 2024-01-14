@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Math = System.Math;
 
 public struct RiotPower
 {
     public float riotPower;
-    public Buff riotPowerBuff;
+    // public Buff riotPowerBuff;
 }
 public class RiotPowerManager : AutoRunObjectBase
 {
@@ -15,7 +15,7 @@ public class RiotPowerManager : AutoRunObjectBase
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -35,19 +35,19 @@ public class RiotPowerManager : AutoRunObjectBase
     }
 
     // buff管理器
-    public override void BuffManager()
+    public void BuffManage()
     {
-        AutoRunObjectBase autoRunObjectBase = new AutoRunObjectBase();
+        // AutoRunObjectBase autoRunObjectBase = new AutoRunObjectBase();
 
-        Buff _riotPowerBuff = new Buff(
-            _riotPowerFans.riotPowerBuff.element,
-            _riotPowerFans.riotPowerBuff.value,
-            _riotPowerFans.riotPowerBuff.durationTime,
-            _riotPowerFans.riotPowerBuff.description,
-            _riotPowerFans.riotPowerBuff.operationType
-        );
+        // Buff _riotPowerBuff = new Buff(
+        //     _riotPowerFans.riotPowerBuff.element,
+        //     _riotPowerFans.riotPowerBuff.value,
+        //     _riotPowerFans.riotPowerBuff.durationTime,
+        //     _riotPowerFans.riotPowerBuff.description,
+        //     _riotPowerFans.riotPowerBuff.operationType
+        // );
 
-        autoRunObjectBase.SetBuff(buffGlobalIndex, _riotPowerBuff);
+        // autoRunObjectBase.SetBuff(buffGlobalIndex, _riotPowerBuff);
 
     } 
 
@@ -65,17 +65,17 @@ public class RiotPowerManager : AutoRunObjectBase
     public void IncreaseRiotPower(float amount)
     {
         RiotPower += amount;
-        Console.WriteLine($"RiotPower increased by {amount}. Current RiotPower: {RiotPower}");
+        Debug.Log($"RiotPower increased by {amount}. Current RiotPower: {RiotPower}");
     }
     // 减少监管力度数值
     public void DecreaseRiotPower(float amount)
     {
         RiotPower -= amount;
-        Console.WriteLine($"RiotPower decreased by {amount}. Current RiotPower: {RiotPower}");
+        Debug.Log($"RiotPower decreased by {amount}. Current RiotPower: {RiotPower}");
     }
     // 打印监管力度数值
     public void PrintRiotPower()
     {
-        Console.WriteLine($"Current RiotPower: {RiotPower}");
+        Debug.Log($"Current RiotPower: {RiotPower}");
     }
 }
