@@ -1,0 +1,55 @@
+{
+    "eventCounts":2,
+    "events":
+    [
+      {
+        "text": "Event 1",
+        "eventOptions": 
+        [
+          {
+            "element": "",
+            "value": 5.0,
+            "description": "",
+            "durationTime": 20.0
+          },
+          {
+            "element": "",
+            "value": 5.0,
+            "description": "",
+            "durationTime": 20.0
+          },
+          {
+            "element": "",
+            "value": 5.0,
+            "description": "",
+            "durationTime": 20.0
+          }
+        ]
+      },
+      {
+        "text": "Event 2",
+        "eventOptions": 
+        [
+          {
+            "element": "",
+            "value": 5.0,
+            "description": "",
+            "durationTime": 20.0
+          },
+          {
+            "element": "",
+            "value": 5.0,
+            "description": "",
+            "durationTime": 20.0
+          },
+          {
+            "element": "",
+            "value": 5.0,
+            "description": "",
+            "durationTime": 20.0
+          }
+        ]
+      }
+    ]
+}
+  

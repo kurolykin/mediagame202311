@@ -6,6 +6,7 @@ using Math = System.Math;
 
 public class RiotPowerManager
 {
+    // 监管力度数值
     private float riotPower;
 
     public float RiotPower
@@ -13,24 +14,24 @@ public class RiotPowerManager
         get { return riotPower; }
         set { riotPower = Math.Clamp(value, 0f, 100f); } // ������0��100֮��
     }
-
+    // 初始化监管力度数值
     public RiotPowerManager(float initialRiotPower = 50f)
     {
         RiotPower = initialRiotPower;
     }
-
+    // 增加监管力度数值
     public void IncreaseRiotPower(float amount)
     {
         RiotPower += amount;
         Debug.Log($"RiotPower increased by {amount}. Current RiotPower: {RiotPower}");
     }
-
+    // 减少监管力度数值
     public void DecreaseRiotPower(float amount)
     {
         RiotPower -= amount;
         Debug.Log($"RiotPower decreased by {amount}. Current RiotPower: {RiotPower}");
     }
-
+    // 打印监管力度数值
     public void PrintRiotPower()
     {
         Debug.Log($"Current RiotPower: {RiotPower}");
