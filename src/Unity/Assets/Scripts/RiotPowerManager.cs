@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Math = System.Math;
 
 
 public class RiotPowerManager
@@ -11,7 +11,7 @@ public class RiotPowerManager
     public float RiotPower
     {
         get { return riotPower; }
-        set { riotPower = Math.Clamp(value, 0f, 100f); } // ÏÞÖÆÔÚ0µ½100Ö®¼ä
+        set { riotPower = Math.Clamp(value, 0f, 100f); } // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½100Ö®ï¿½ï¿½
     }
 
     public RiotPowerManager(float initialRiotPower = 50f)
@@ -22,18 +22,18 @@ public class RiotPowerManager
     public void IncreaseRiotPower(float amount)
     {
         RiotPower += amount;
-        Console.WriteLine($"RiotPower increased by {amount}. Current RiotPower: {RiotPower}");
+        Debug.Log($"RiotPower increased by {amount}. Current RiotPower: {RiotPower}");
     }
 
     public void DecreaseRiotPower(float amount)
     {
         RiotPower -= amount;
-        Console.WriteLine($"RiotPower decreased by {amount}. Current RiotPower: {RiotPower}");
+        Debug.Log($"RiotPower decreased by {amount}. Current RiotPower: {RiotPower}");
     }
 
     public void PrintRiotPower()
     {
-        Console.WriteLine($"Current RiotPower: {RiotPower}");
+        Debug.Log($"Current RiotPower: {RiotPower}");
     }
 }
 
@@ -49,7 +49,5 @@ class Program
         riotPowerManager.DecreaseRiotPower(10f);
 
         riotPowerManager.PrintRiotPower();
-    }
-}
     }
 }
