@@ -79,6 +79,26 @@ namespace BuffSystem
             target_object._buffs.Remove(this);
         }
     }
+    class BuffManager:MonoBehaviour
+    {
+        public static Dictionary<int, BuffBase> allBuffs = new Dictionary<int, BuffBase>();
+        void Start()
+        {
+            // TODO load all buffs from json
+        }
+        void RegisterBuff(AutoRunObjectBase target_object, int buffID)
+        {
+            //从AllBuffs中实例化一个buff对象
+            BuffBase buff = allBuffs[buffID];
+            //绑定(后面要删除！)
+            buff.target_object = target_object;
+            //将buff添加到target_object的buff列表中
+            target_object._buffs.Add(buff);
+            //调用buff的OnAdd()函数
+            buff.OnAdd();
+        }
+        //不需要RemoveBuff，因为buff的移除是由buff自己的OnRemove()函数完成的
+    }
 }
 
 // TODO：需要写一个buff管理器，根据给定的buffID动态地实例化buffBase对象

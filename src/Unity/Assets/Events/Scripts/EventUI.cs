@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class BasicEvent : MonoBehaviour
+public class EventUI : MonoBehaviour
 {
     // Start is called before the first frame update
     EventData _eventData;

@@ -1,0 +1,44 @@
+[
+    {
+        "eventID": 1,
+        "title": "事件1",
+        "content": "这是一个测试事件",
+        "image": "path/to/image",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": true,
+        "scheduledTurn": 3,
+        "eventOptions": [
+            {
+                "name": "选项1",
+                "description": "选项1",
+                "buffs": "1,2,3",
+                "buff_delays": "4,5,6",
+                "upcoming_events": "1,2,3",
+                "event_delays": "4,5,6"
+            },
+            {
+                "name": "选项2",
+                "description": "选项2",
+                "buffs": "1,2,3",
+                "buff_delays": "4,5,6",
+                "upcoming_events": "1,2,3",
+                "event_delays": "4,5,6"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "fans",
+                "target_data": "amount",
+                "threshold": 100,
+                "operator": "GreaterThan"
+            },
+            {
+                "target_object": "riot",
+                "target_data": "amount",
+                "threshold": 100,
+                "operator": "GreaterThan"
+            }
+        ]
+    }
+]
