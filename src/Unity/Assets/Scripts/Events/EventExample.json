@@ -3,50 +3,78 @@
     "events":
     [
       {
-        "text": "Event 1",
+        "title": "",
+        "content": "",
+        "image":,
+        "optionNumbers":3,
+        "triggerNumbers":1,
         "eventOptions": 
         [
           {
+            "name":"",
             "element": "",
             "value": 5.0,
             "description": "",
             "durationTime": 20.0
           },
           {
+            "name":"",
             "element": "",
             "value": 5.0,
             "description": "",
             "durationTime": 20.0
           },
           {
+            "name":"",
             "element": "",
             "value": 5.0,
             "description": "",
             "durationTime": 20.0
           }
+        ],
+        "eventTriggers":
+        [
+          {
+            "triggerElement":"",
+            "triggerValue":
+          }
         ]
       },
       {
-        "text": "Event 2",
+        "title": "",
+        "content": "",
+        "image":,
+        "optionNumbers":3,
+        "triggerNumbers":1,
         "eventOptions": 
         [
           {
+            "name":"",
             "element": "",
             "value": 5.0,
             "description": "",
             "durationTime": 20.0
           },
           {
+            "name":"",
             "element": "",
             "value": 5.0,
             "description": "",
             "durationTime": 20.0
           },
           {
+            "name":"",
             "element": "",
             "value": 5.0,
             "description": "",
             "durationTime": 20.0
+          }
+        ],
+        "eventTriggers":
+        [
+          {
+            "triggerElement":"",
+            "triggerValue":
           }
         ]
       }

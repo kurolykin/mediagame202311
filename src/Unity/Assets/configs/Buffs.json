@@ -1,0 +1,24 @@
+{
+    "Buffs": [
+      {
+        "BuffID": 1,
+        "BuffName": "AdditionBuff",
+        "BuffType": "Addition",
+        "Duration": 10.0,
+        "TargetEffects": {
+          "Stat1": 5.0,
+          "Stat2": 10.0
+        }
+      },
+      {
+        "BuffID": 2,
+        "BuffName": "MultiplicationBuff",
+        "BuffType": "Multiplication",
+        "Duration": 5.0,
+        "TargetEffects": {
+          "Stat3": 0.5,
+          "Stat4": 0.8
+        }
+      }
+    ]
+  }
