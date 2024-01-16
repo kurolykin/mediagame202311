@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using BuffSystem;
+using System.IO;
+using Newtonsoft.Json;
 // 这个文件还没修改完！
 
 // 选择结构体定义
@@ -36,15 +38,15 @@ public class EventBase
     public int eventID; // 事件ID
     public string title; // 事件标题
     public string content; // 事件文本
-    public Sprite image; // 事件插图
+    public string image; // 事件插图
     public int optionNumbers; // 包含选择数
     public List<Option> eventOptions; // 包含若干选择的数组
-    public List<Tuple<AutoRunObjectBase, string, int, compareOperator>> conditions; // 事件触发条件,包含目标对象，属性名称，阈值, 比较符
+    public List<Tuple<string, string, int, compareOperator>> conditions; // 事件触发条件,包含目标对象，属性名称，阈值, 比较符
     public bool isTriggered; // 事件是否被触发
     public bool isRepeatable; // 事件是否可重复触发
     public int scheduledTurn = -1; // 事件被触发的回合数,-1表示不被触发
 
-    public EventBase(string title, string content, Sprite image, int optionNumbers, List<Option> eventOptions, List<Tuple<AutoRunObjectBase, string, int, compareOperator>> conditions, bool isTriggered, bool isRepeatable, int scheduledTurn)
+    public EventBase(string title, string content, string image, int optionNumbers, List<Option> eventOptions, List<Tuple<string, string, int, compareOperator>> conditions, bool isTriggered, bool isRepeatable, int scheduledTurn)
     {
         this.title = title;
         this.content = content;
@@ -64,46 +66,108 @@ public class EventBase
         this.image = null;
         this.optionNumbers = 0;
         this.eventOptions = new List<Option>();
-        this.conditions = new List<Tuple<AutoRunObjectBase, string, int, compareOperator>>();
+        this.conditions = new List<Tuple<string, string, int, compareOperator>>();
         this.isTriggered = false;
         this.isRepeatable = false;
         this.scheduledTurn = -1;
     }
-
-    public bool JudgeCondition()
+    public void Print()
     {
-        if (this.conditions.Count > 0)
+        string str = "";
+        str += "Title: " + this.title + "\n";
+        str += "Content: " + this.content + "\n";
+        str += "Image: " + this.image + "\n";
+        str += "OptionNumbers: " + this.optionNumbers + "\n";
+        str += "isTriggered: " + this.isTriggered + "\n";
+        str += "isRepeatable: " + this.isRepeatable + "\n";
+        str += "ScheduledTurn: " + this.scheduledTurn + "\n";
+        str += "EventOptions: " + "\n";
+        foreach (Option option in this.eventOptions)
         {
-            foreach (Tuple<AutoRunObjectBase, string, int, compareOperator> condition in this.conditions)
+            str += "OptionName: " + option.name + "\n";
+            str += "OptionDescription: " + option.description + "\n";
+            str += "OptionBuffs: " + "\n";
+            foreach (KeyValuePair<int, int> buff in option.buffs)
+            {
+                str += "BuffID: " + buff.Key + ", ";
+                str += "BuffDuration: " + buff.Value + "\n";
+            }
+            str += "OptionUpcomingEvents: " + "\n";
+            foreach (KeyValuePair<int, int> upcoming_event in option.upcoming_events)
+            {
+                str += "UpcomingEventID: " + upcoming_event.Key + ", ";
+                str += "UpcomingEventDelay: " + upcoming_event.Value + "\n";
+            }
+        }
+        str += "Conditions: " + "\n";
+        foreach (Tuple<string, string, int, compareOperator> condition in this.conditions)
+        {
+            str += "ConditionTargetObject: " + condition.Item1 + "\n";
+            str += "ConditionTargetDataName: " + condition.Item2 + "\n";
+            str += "ConditionThreshold: " + condition.Item3 + "\n";
+            str += "ConditionCompareOperator: " + condition.Item4 + "\n";
+        }
+        Debug.Log(str);
+    }
+}
+
+
+public class EventManager : MonoBehaviour
+{
+    private Dictionary<int, EventBase> pendingEvents = new Dictionary<int, EventBase>(); // 待选事件列表
+    private Dictionary<int, EventBase> allEvents = new Dictionary<int, EventBase>(); // 所有事件列表
+    [SerializeField]
+    GameObject eventPanel;
+    public int userChoiceIndex = -1;
+    [SerializeField]
+    public AROManager aroManager;
+    [SerializeField]
+    BuffManager buffManager;
+    // Start is called before the first frame update
+    void Start()
+    {
+        // TODO: 从文件中读取所有事件
+        // 绑定按钮
+        Button[] buttons = eventPanel.transform.Find("Buttons").GetComponentsInChildren<Button>();
+        foreach (Button button in buttons)
+        {
+            button.onClick.AddListener(delegate () { ClickChoice(int.Parse(button.name.Substring(6)) - 1); });
+        }
+    }
+    public bool JudgeCondition(List<Tuple<string, string, int, EventBase.compareOperator>> conditions)
+    {
+        if (conditions.Count > 0)
+        {
+            foreach (Tuple<string, string, int, EventBase.compareOperator> condition in conditions)
             {
                 switch (condition.Item4)
                 {
-                    case compareOperator.GreaterThan:
-                        if (!(condition.Item1.GetData(condition.Item2) > condition.Item3))
+                    case EventBase.compareOperator.GreaterThan:
+                        if (aroManager.GetData(condition.Item1, condition.Item2) <= condition.Item3)
                         {
                             return false;
                         }
                         break;
-                    case compareOperator.LessThan:
-                        if (!(condition.Item1.GetData(condition.Item2) < condition.Item3))
+                    case EventBase.compareOperator.LessThan:
+                        if (aroManager.GetData(condition.Item1, condition.Item2) >= condition.Item3)
                         {
                             return false;
                         }
                         break;
-                    case compareOperator.EqualTo:
-                        if (!(condition.Item1.GetData(condition.Item2) == condition.Item3))
+                    case EventBase.compareOperator.EqualTo:
+                        if (aroManager.GetData(condition.Item1, condition.Item2) != condition.Item3)
                         {
                             return false;
                         }
                         break;
-                    case compareOperator.GreaterThanOrEqualTo:
-                        if (!(condition.Item1.GetData(condition.Item2) >= condition.Item3))
+                    case EventBase.compareOperator.GreaterThanOrEqualTo:
+                        if (aroManager.GetData(condition.Item1, condition.Item2) < condition.Item3)
                         {
                             return false;
                         }
                         break;
-                    case compareOperator.LessThanOrEqualTo:
-                        if (!(condition.Item1.GetData(condition.Item2) <= condition.Item3))
+                    case EventBase.compareOperator.LessThanOrEqualTo:
+                        if (aroManager.GetData(condition.Item1, condition.Item2) > condition.Item3)
                         {
                             return false;
                         }
@@ -115,31 +179,14 @@ public class EventBase
         }
         return true;
     }
-}
-
-
-public class EventManager
-{
-    private Dictionary<int, EventBase> pendingEvents; // 待选事件列表
-    private Dictionary<int, EventBase> allEvents; // 所有事件列表
-    [SerializeField]
-    public EventUI eventPanel;
-    private Button[] choice_buttons;
-    public int userChoiceIndex = -1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        // TODO: 从文件中读取所有事件
-    }
-
     // 刷新函数，用于检查待选事件列表中是否有事件需要触发
-    void Refresh()
+    void Update()
     {
         if (pendingEvents.Count > 0)
         {
             foreach (KeyValuePair<int, EventBase> pendingEvent in pendingEvents)
             {
-                if (pendingEvent.Value.JudgeCondition())
+                if (pendingEvent.Value.scheduledTurn <= aroManager.turn && this.JudgeCondition(pendingEvent.Value.conditions))
                 {
                     //显示事件窗口
                     showWindow(pendingEvent.Value);
@@ -153,7 +200,8 @@ public class EventManager
                         {
                             foreach (KeyValuePair<int, int> buff in selectedOption.buffs)
                             {
-                                // TODO: 用buffmanager添加buff
+                                // 批量设置buff
+                                buffManager.ActivateBuff(buff.Key, buff.Value);
                             }
                         }
                         if (selectedOption.upcoming_events.Count > 0)
@@ -161,18 +209,22 @@ public class EventManager
                             foreach (KeyValuePair<int, int> upcoming_event in selectedOption.upcoming_events)
                             {
                                 //批量设置接续
-                                ScheduleEvent(upcoming_event.Key, upcoming_event.Value);
+                                RelativeSchedule(upcoming_event.Key, upcoming_event.Value);
                             }
                         }
+                        //效果施加完毕，从待选事件列表中移除
+                        pendingEvents.Remove(pendingEvent.Key);
+                        //关闭事件窗口
+                        eventPanel.SetActive(false);
+                        //重置玩家选择
+                        userChoiceIndex = -1;
+                        // 恢复时间
+                        Time.timeScale = 1;
                     }
-                    //效果施加完毕，从待选事件列表中移除
-                    pendingEvents.Remove(pendingEvent.Key);
-                    //关闭事件窗口
-                    //eventPanel.setActive(false);
-                    //重置玩家选择
-                    userChoiceIndex = -1;
+
                 }
             }
+            // 移除已经触发的事件
         }
     }
 
@@ -185,15 +237,97 @@ public class EventManager
     // 设置时间窗口并显示时间窗口
     public void showWindow(EventBase currentEvent)
     {
-        // TODO: 显示事件窗口
+        // 设置事件窗口的标题
+        eventPanel.transform.Find("Title").GetComponent<Text>().text = currentEvent.title;
+        // 设置事件窗口的内容
+        eventPanel.transform.Find("Content").GetComponent<Text>().text = currentEvent.content;
+        // 设置事件窗口的图片
+        eventPanel.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(currentEvent.image);
+        Transform ButtonPanel = eventPanel.transform.Find("Buttons");
+        // 设置事件窗口的选项
+        for (int i = 0; i < currentEvent.optionNumbers; i++)
+        {
+            ButtonPanel.Find("Choice" + (i + 1)).GetComponentInChildren<Text>().text = currentEvent.eventOptions[i].name;
+        }
+        // 调整选项大小和位置，并且将多余的选项隐藏
+        if (currentEvent.optionNumbers == 1)
+        {
+            ButtonPanel.Find("Choice1").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+            ButtonPanel.Find("Choice1").gameObject.SetActive(true);
+            ButtonPanel.Find("Choice2").gameObject.SetActive(false);
+            ButtonPanel.Find("Choice3").gameObject.SetActive(false);
+        }
+        else if (currentEvent.optionNumbers == 2)
+        {
+            ButtonPanel.Find("Choice1").GetComponent<RectTransform>().anchoredPosition = new Vector2(-195, 0);
+            ButtonPanel.Find("Choice2").GetComponent<RectTransform>().anchoredPosition = new Vector2(195, 0);
+            ButtonPanel.Find("Choice1").gameObject.SetActive(true);
+            ButtonPanel.Find("Choice2").gameObject.SetActive(true);
+            ButtonPanel.Find("Choice3").gameObject.SetActive(false);
+        }
+        else if (currentEvent.optionNumbers == 3)
+        {
+            ButtonPanel.Find("Choice1").GetComponent<RectTransform>().anchoredPosition = new Vector2(-195, 0);
+            ButtonPanel.Find("Choice2").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+            ButtonPanel.Find("Choice3").GetComponent<RectTransform>().anchoredPosition = new Vector2(195, 0);
+            ButtonPanel.Find("Choice1").gameObject.SetActive(true);
+            ButtonPanel.Find("Choice2").gameObject.SetActive(true);
+            ButtonPanel.Find("Choice3").gameObject.SetActive(true);
+        }
+        // 显示事件窗口
+        eventPanel.SetActive(true);
     }
 
-    public void ScheduleEvent(int eventID, int turn)
+    public void RelativeSchedule(int eventID, int delayTurn)
     {
+        if (delayTurn < 0)
+        {
+            throw new Exception("Invalid delay turn!");
+        }
         if (allEvents.ContainsKey(eventID))
         {
-            allEvents[eventID].scheduledTurn = turn;
-            pendingEvents.Add(eventID, allEvents[eventID]);
+            if (pendingEvents.ContainsKey(eventID))
+            {
+                throw new Exception("Event already scheduled!");
+            }
+            else
+            {
+                if (allEvents[eventID].isTriggered && !allEvents[eventID].isRepeatable)
+                {
+                    throw new Exception("Attempt to schedule a triggered unrepeatable event!");
+                }
+                EventBase eventBase = allEvents[eventID];
+                eventBase.scheduledTurn = aroManager.turn + delayTurn;
+                pendingEvents.Add(eventID, eventBase);
+            }
+        }
+        else
+        {
+            throw new Exception("Invalid event ID!");
+        }
+    }
+    public void AbsoluteSchedule(int eventID, int turn)
+    {
+        if (turn < aroManager.turn)
+        {
+            throw new Exception("Invalid turn!");
+        }
+        if (allEvents.ContainsKey(eventID))
+        {
+            if (pendingEvents.ContainsKey(eventID))
+            {
+                throw new Exception("Event already scheduled!");
+            }
+            else
+            {
+                if (allEvents[eventID].isTriggered && !allEvents[eventID].isRepeatable)
+                {
+                    throw new Exception("Attempt to schedule a triggered unrepeatable event!");
+                }
+                EventBase eventBase = allEvents[eventID];
+                eventBase.scheduledTurn = turn;
+                pendingEvents.Add(eventID, eventBase);
+            }
         }
         else
         {
@@ -201,19 +335,178 @@ public class EventManager
         }
     }
 
-    // buff导入函数
-    public void ImportEvent(string filepath)
+    // 从json文件中读取所有事件
+    public void ReadEventsFromJson(string jsonpath)
     {
-
-    }
-
-    public void ExportEvent(EventBase eventBase, string jsonpath)
-    {
-        if (!System.IO.File.Exists(jsonpath))
+        string json_str = System.IO.File.ReadAllText(jsonpath);
+        JsonTextReader reader = new JsonTextReader(new StringReader(json_str));
+        while (reader.Read())
         {
-            System.IO.File.Create(jsonpath);
+            if (reader.TokenType == JsonToken.PropertyName)
+            {
+                // Debug.Log(reader.Value);
+                string propertyName = reader.Value.ToString();
+                if (propertyName == "eventID")
+                {
+                    // Debug.Log("Start reading event");
+                    EventBase eventBase = new EventBase();
+                    eventBase.eventID = reader.ReadAsInt32().Value;
+                    reader.Read(); // 跳过property name
+                    eventBase.title = reader.ReadAsString();
+                    // Debug.Log("find title: " + eventBase.title);
+                    reader.Read(); // 跳过property name
+                    eventBase.content = reader.ReadAsString();
+                    reader.Read(); // 跳过property name
+                    eventBase.image = reader.ReadAsString();
+                    reader.Read(); // 跳过property name
+                    eventBase.optionNumbers = reader.ReadAsInt32().Value;
+                    reader.Read(); // 跳过property name
+                    eventBase.isTriggered = reader.ReadAsBoolean().Value;
+                    reader.Read(); // 跳过property name
+                    eventBase.isRepeatable = reader.ReadAsBoolean().Value;
+                    reader.Read(); // 跳过property name
+                    eventBase.scheduledTurn = reader.ReadAsInt32().Value;
+                    reader.Read(); // 跳过property name
+                    //now iterate to read the options
+                    reader.Read();
+                    if (reader.TokenType == JsonToken.StartArray)
+                    {
+                        // Debug.Log("Start array of options");
+                        reader.Read();
+                        Debug.Log(reader.TokenType);
+                        //start iterating the options
+                        while (reader.TokenType != JsonToken.EndArray)
+                        {
+                            if (reader.TokenType == JsonToken.PropertyName)
+                            {
+                                // Debug.Log("Start reading option");
+                                string optionName = reader.Value.ToString();
+                                // Debug.Log("find option name: " + optionName);
+                                if (optionName == "name")
+                                {
+                                    //name indecates a new option object
+                                    Option option = new Option();
+                                    option.name = reader.ReadAsString();
+                                    Debug.Log("find option name: " + option.name);
+                                    reader.Read(); // 跳过property name
+                                    option.description = reader.ReadAsString();
+                                    reader.Read(); // 跳过property name
+
+                                    //now we read buffs
+                                    if (option.buffs == null)
+                                    {
+                                        option.buffs = new Dictionary<int, int>();
+                                    }
+                                    string buffs_str = reader.ReadAsString();
+                                    if (buffs_str != "none") // none 代表没有buff，遇到none就不读了
+                                    {
+                                        //split the buffs_str by ',' to get the buffs
+                                        string[] buffs = buffs_str.Split(',');
+                                        reader.Read(); // 跳过property name
+                                        //now we read delay of buffs
+                                        string buffs_delay_str = reader.ReadAsString();
+                                        Debug.Log("Buffs Delay: " + buffs_delay_str);
+                                        //split the buffs_delay_str by ',' to get the buffs_delay
+                                        string[] buffs_delay = buffs_delay_str.Split(',');
+                                        //store buffs and buffs_delay in the option object
+                                        for (int i = 0; i < buffs.Length; i++)
+                                        {
+                                            option.buffs.Add(int.Parse(buffs[i]), int.Parse(buffs_delay[i]));
+                                        }
+                                    }
+                                    else
+                                    {
+                                        reader.Read(); // 跳过buffs_delay的property name
+                                        reader.Read(); // 跳过buffs_delay
+                                    }
+                                    // do the same as buffs on upcoming_events
+                                    if (option.upcoming_events == null)
+                                    {
+                                        option.upcoming_events = new Dictionary<int, int>();
+                                    }
+                                    reader.Read(); // 跳过upcoming_events的property name
+                                    string upcoming_events_str = reader.ReadAsString();
+                                    if (upcoming_events_str != "none")
+                                    {
+                                        string[] upcoming_events = upcoming_events_str.Split(',');
+                                        reader.Read();
+                                        string upcoming_events_delay_str = reader.ReadAsString();
+                                        string[] upcoming_events_delay = upcoming_events_delay_str.Split(',');
+                                        if (option.upcoming_events == null)
+                                        {
+                                            option.upcoming_events = new Dictionary<int, int>();
+                                        }
+                                        for (int i = 0; i < upcoming_events.Length; i++)
+                                        {
+                                            option.upcoming_events.Add(int.Parse(upcoming_events[i]), int.Parse(upcoming_events_delay[i]));
+                                        }
+                                    }
+                                    else
+                                    {
+                                        reader.Read(); // 跳过upcoming_events_delay的property name
+                                        reader.Read(); // 跳过upcoming_events_delay
+                                    }
+                                    //add the option to the eventBase
+                                    eventBase.eventOptions.Add(option);
+                                }
+                            }
+                            //read the next token
+                            reader.Read();
+                        }
+                    }
+                    //now the token should be EndArray
+                    Debug.Log(reader.TokenType);
+                    //next token should be PropertyName
+                    reader.Read();
+                    Debug.Log(reader.TokenType);
+                    //now we read the conditions
+                    reader.Read();
+                    Debug.Log(reader.TokenType);
+                    if (reader.TokenType == JsonToken.StartArray)
+                    {
+                        Debug.Log("Start array of conditions");
+                        reader.Read();
+                        //start iterating the conditions
+                        while (reader.TokenType != JsonToken.EndArray)
+                        {
+                            if (reader.TokenType == JsonToken.PropertyName)
+                            {
+                                string property = reader.Value.ToString();
+                                if (property == "target_object")
+                                {
+                                    //target_object indecates a new condition object
+                                    string target_object_name = reader.ReadAsString();
+                                    Debug.Log("find target object name: " + target_object_name);
+                                    reader.Read(); // 跳过property name
+                                    string target_data = reader.ReadAsString();
+                                    Debug.Log("find target data: " + target_data);
+                                    reader.Read(); // 跳过property name
+                                    int threshold = reader.ReadAsInt32().Value;
+                                    reader.Read(); // 跳过property name
+                                    string operator_str = reader.ReadAsString();
+                                    //transfer the string to enum
+                                    EventBase.compareOperator compareOperator = (EventBase.compareOperator)System.Enum.Parse(typeof(EventBase.compareOperator), operator_str);
+                                    Tuple<string, string, int, EventBase.compareOperator> condition = new Tuple<string, string, int, EventBase.compareOperator>(target_object_name, target_data, threshold, compareOperator);
+                                    eventBase.conditions.Add(condition);
+                                }
+                            }
+                            //read the next token
+                            reader.Read();
+                        }
+                    }
+                    this.allEvents.Add(eventBase.eventID, eventBase);
+                    // 看看读出来的数据对不对
+                    eventBase.Print();
+                }
+            }
         }
-        string json_str = JsonUtility.ToJson(eventBase);
-        System.IO.File.WriteAllText(jsonpath, json_str);
+    }
+    public void PrintEvents()
+    {
+        Debug.Log("EventManager: Print all, count: " + allEvents.Count);
+        foreach (KeyValuePair<int, EventBase> eventBase in allEvents)
+        {
+            eventBase.Value.Print();
+        }
     }
 }

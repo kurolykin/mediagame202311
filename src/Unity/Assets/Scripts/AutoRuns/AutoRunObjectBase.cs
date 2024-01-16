@@ -11,6 +11,7 @@ public abstract class AutoRunObjectBase : MonoBehaviour
     public Dictionary<string, float> _data;
     // 缓冲区字典，用于存储对象的buff
     public List<BuffBase> _buffs;
+    public List<int> _buffsToRemove = new List<int>();
     
 
     // Start is called before the first frame update
@@ -32,7 +33,17 @@ public abstract class AutoRunObjectBase : MonoBehaviour
     }
     
     // 抽象方法，用于在派生类中实现具体的刷新逻辑
-    public abstract void Refresh();
+    public virtual void Refresh()
+    {
+        foreach (BuffBase buff in _buffs)
+        {
+            buff.OnUpdate();
+        }
+        foreach (int index in _buffsToRemove)
+        {
+            _buffs.RemoveAt(index);
+        }
+    }
 
     public virtual void Reveal()
     {
