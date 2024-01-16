@@ -1,24 +1,23 @@
-{
-    "Buffs": [
-      {
-        "BuffID": 1,
-        "BuffName": "AdditionBuff",
-        "BuffType": "Addition",
-        "Duration": 10.0,
-        "TargetEffects": {
-          "Stat1": 5.0,
-          "Stat2": 10.0
-        }
-      },
-      {
-        "BuffID": 2,
-        "BuffName": "MultiplicationBuff",
-        "BuffType": "Multiplication",
-        "Duration": 5.0,
-        "TargetEffects": {
-          "Stat3": 0.5,
-          "Stat4": 0.8
-        }
-      }
-    ]
+[
+  {
+    "BuffID": 1,
+    "BuffName": "生育警察",
+    "BuffType": "Addition",
+    "TargetObject": "fans",
+    "Duration": 10,
+    "TargetEffects": {
+      "amount": 100
+    }
+  },
+  {
+    "BuffID": 2,
+    "BuffName": "计划生育",
+    "BuffType": "Multiplication",
+    "TargetObject": "fans",
+    "Duration": 5,
+    "TargetEffects": {
+      "amount": 0.97,
+      "like": 0.88
+    }
   }
+]

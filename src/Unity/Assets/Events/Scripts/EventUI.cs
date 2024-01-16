@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class BasicEvent : MonoBehaviour
+public class EventUI : MonoBehaviour
 {
     // Start is called before the first frame update
-    EventData _eventData;
     Text title;
     Text contents;
     Image image;
@@ -27,21 +26,8 @@ public class BasicEvent : MonoBehaviour
         return;
     }
 
-    void SetContents(EventData eventData)
-    {
-        this._eventData = eventData;
-        this.title.text = eventData.title;
-        this.contents.text = eventData.contents;
-        this.image = eventData.image;
-        for (int i = 0; i < eventData.numchoices; i++)
-        {
-            this.choice_buttons[i].GetComponentInChildren<Text>().text = eventData.choices_names[i];
-        }
-    }
-
     public void emitChoice(int choice)
     {
-        int globalEffectID = this._eventData.effects[choice];
         // EventSystem.Instance.EmitEvent(globalEffectID);
         // 这部分还要修改，等我想明白事件系统怎么设计
     }
