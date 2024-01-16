@@ -71,13 +71,17 @@ public class RiotPowerManager : AutoRunObjectBase
     // 未完成
     public void RiotPwoerBuff()
     {
-        
+        BuffBase riotPowerBuff = new BuffBase(BuffBase.buffType.Addition,3,"RiotPowerBuff", 5.0f, this, new Dictionary<string,float>(){
+            {"riotPower", 10f}
+        });
+        gameObject.GetComponent<BuffManager>().RegisterBuff(riotPowerBuff);
+        this._buffs.Add(riotPowerBuff);
     }
 
     public float RiotPower
     {
-        get { return _riotPower.riotPower; }
-        set { _riotPower.riotPower = Math.Clamp(value, 0f, 100f); } // 
+        get { return this.RiotPower; }
+        set { this.RiotPower = Math.Clamp(value, 0f, 100f); } // 
     }
     // 初始化监管力度数值
     public RiotPowerManager(float initialRiotPower = 50f)
