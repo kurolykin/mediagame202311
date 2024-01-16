@@ -4,6 +4,7 @@ using UnityEngine;
 using BuffSystem;
 public class Fans : AutoRunObjectBase
 {
+    Dictionary<string, string> FansAttitudeStage;
 
     void Start()
     {
@@ -13,6 +14,10 @@ public class Fans : AutoRunObjectBase
         //     {"Real Fans", 0.0f},
         //     {"Haters", 0.0f},
         // };
+        FansAttitudeStage.Add("Zombie Fans", "Low");
+        FansAttitudeStage.Add("Normal Fans", "Low");
+        FansAttitudeStage.Add("Real Fans", "Low");
+        FansAttitudeStage.Add("Haters", "Low");
         
         Debug.Log("Fans Start");
     }
@@ -91,5 +96,65 @@ public class Fans : AutoRunObjectBase
             }
         }
         return buffStr;
+    }
+
+    public void FansAttitudeStageSet()
+    {
+        switch(_data["ZombieFansAttitude"] / 25):
+        {
+            case 0:
+                FansAttitudeStage["Zombie Fans"] = "Low";
+                break;
+            case 1:
+                FansAttitudeStage["Zombie Fans"] = "Normal";
+                break;
+            case 2:
+                FansAttitudeStage["Zombie Fans"] = "Medium";
+                break;
+            case 3:
+                FansAttitudeStage["Zombie Fans"] = "High";
+        }
+        switch(_data["NormalFansAttitude"] / 25):
+        {
+            case 0:
+                FansAttitudeStage["Normal Fans"] = "Low";
+                break;
+            case 1:
+                FansAttitudeStage["Normal Fans"] = "Normal";
+                break;
+            case 2:
+                FansAttitudeStage["Normal Fans"] = "Medium";
+                break;
+            case 3:
+                FansAttitudeStage["Normal Fans"] = "High";
+        }
+        switch(_data["RealFansAttitude"] / 25):
+        {
+            case 0:
+                FansAttitudeStage["Real Fans"] = "Low";
+                break;
+            case 1:
+                FansAttitudeStage["Real Fans"] = "Normal";
+                break;
+            case 2:
+                FansAttitudeStage["Real Fans"] = "Medium";
+                break;
+            case 3:
+                FansAttitudeStage["Real Fans"] = "High";
+        }
+        switch(_data["HatersAttitude"] / 25):
+        {
+            case 0:
+                FansAttitudeStage["Haters"] = "Low";
+                break;
+            case 1:
+                FansAttitudeStage["Haters"] = "Normal";
+                break;
+            case 2:
+                FansAttitudeStage["Haters"] = "Medium";
+                break;
+            case 3:
+                FansAttitudeStage["Haters"] = "High";
+        }
     }
 }
