@@ -118,22 +118,22 @@ public class EventManager
         return isTrigger;
     }
     // 选择按钮1
-    public bool ChoiceButtonFirst(Event currentEvent, int i)
+    public bool ChoiceButtonFirst()
     {
         return 1;
     }
     // 选择按钮2
-    public bool (Event currentEvent, int i)
+    public bool ChoiceButtonSecond()
     {
         return 2;
     }
     // 选择按钮3
-    public bool (Event currentEvent, int i)
+    public bool ChoiceButtonThird()
     {
         return 3;
     }
     // 选择
-    public void SelectOption(Event currentEvent)
+    public void SelectedOption(Event currentEvent)
     {
         int optionIndex;
         Option currentOption = currentEvent.eventOptions[optionIndex];

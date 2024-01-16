@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Math = System.Math;
+using BuffSystem;
 
-public struct RiotPower
-{
-    public float riotPower;
-    // public Buff riotPowerBuff;
-}
 public class RiotPowerManager : AutoRunObjectBase
 {
-    private RiotPower _riotPower;
+    private string riotPowerStage;
 
     // Start is called before the first frame update
     void Start()
@@ -49,12 +45,39 @@ public class RiotPowerManager : AutoRunObjectBase
 
         // autoRunObjectBase.SetBuff(buffGlobalIndex, _riotPowerBuff);
 
-    } 
+    }
+    // 设置检查力度阶段
+    public void RiotPowerStageSet()
+    {
+        switch (_data["riotPower"] / 25)
+        {
+            case 0:
+                riotPowerStage = "Low";
+                break;
+            case 1:
+                riotPowerStage = "Normal";
+                break;
+            case 2:
+                riotPowerStage = "Medium";
+                break;
+            case 3:
+                riotPowerStage = "High";
+                break;
+        }
+
+    }
+
+    // 根据检查力度设置buff
+    // 未完成
+    public void RiotPwoerBuff()
+    {
+        
+    }
 
     public float RiotPower
     {
         get { return _riotPower.riotPower; }
-        set { _riotPower.riotPower = Math.Clamp(value, 0f, 100f); } // ������0��100֮��
+        set { _riotPower.riotPower = Math.Clamp(value, 0f, 100f); } // 
     }
     // 初始化监管力度数值
     public RiotPowerManager(float initialRiotPower = 50f)
