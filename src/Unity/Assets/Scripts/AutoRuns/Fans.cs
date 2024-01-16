@@ -4,21 +4,16 @@ using UnityEngine;
 using BuffSystem;
 public class Fans : AutoRunObjectBase
 {
-    Dictionary<string, string> FansAttitudeStage;
-
-    void Start()
+    void Awake()
     {
-        // this._data = new Dictionary<string, float>
-        // {
-        //     {"Zombie Fans", 0.0f},
-        //     {"Real Fans", 0.0f},
-        //     {"Haters", 0.0f},
-        // };
-        FansAttitudeStage.Add("Zombie Fans", "Low");
-        FansAttitudeStage.Add("Normal Fans", "Low");
-        FansAttitudeStage.Add("Real Fans", "Low");
-        FansAttitudeStage.Add("Haters", "Low");
-        
+        this._data = new Dictionary<string, float>
+        {
+            {"僵尸粉", 1500.0f},
+            {"路人粉", 500.0f},
+            {"真爱粉", 50.0f},
+            {"黑粉", 100.0f}
+        };
+        this._buffs = new List<BuffBase>();
         Debug.Log("Fans Start");
     }
 
@@ -92,86 +87,9 @@ public class Fans : AutoRunObjectBase
                         }
                     }
                 }
-                buffStr += "剩余时间:" + (buff.duration-buff.timer) + "/" + buff.duration + " ";
+                buffStr += "剩余时间:" + (buff.duration - buff.timer) + "/" + buff.duration + " ";
             }
         }
         return buffStr;
-    }
-
-    public void FansAttitudeStageSet()
-    {
-        switch (_data["ZombieFansAttitude"] / 25)
-        {
-            case 0:
-                FansAttitudeStage["Zombie Fans"] = "Low";
-                break;
-            case 1:
-                FansAttitudeStage["Zombie Fans"] = "Normal";
-                break;
-            case 2:
-                FansAttitudeStage["Zombie Fans"] = "Medium";
-                break;
-            case 3:
-                FansAttitudeStage["Zombie Fans"] = "High";
-                break;
-            default:
-                throw new System.Exception("FansAttitudeStageSet Error: ZombieFansAttitude out of range");
-                break;
-        }
-        switch (_data["NormalFansAttitude"] / 25)
-        {
-            case 0:
-                FansAttitudeStage["Normal Fans"] = "Low";
-                break;
-            case 1:
-                FansAttitudeStage["Normal Fans"] = "Normal";
-                break;
-            case 2:
-                FansAttitudeStage["Normal Fans"] = "Medium";
-                break;
-            case 3:
-                FansAttitudeStage["Normal Fans"] = "High";
-                break;
-            default:
-                throw new System.Exception("FansAttitudeStageSet Error: NormalFansAttitude out of range");
-                break;
-
-        }
-        switch (_data["RealFansAttitude"] / 25)
-        {
-            case 0:
-                FansAttitudeStage["Real Fans"] = "Low";
-                break;
-            case 1:
-                FansAttitudeStage["Real Fans"] = "Normal";
-                break;
-            case 2:
-                FansAttitudeStage["Real Fans"] = "Medium";
-                break;
-            case 3:
-                FansAttitudeStage["Real Fans"] = "High";
-                break;
-            default:
-                throw new System.Exception("FansAttitudeStageSet Error: RealFansAttitude out of range");
-                break;
-        }
-        switch (_data["HatersAttitude"] / 25)
-        {
-            case 0:
-                FansAttitudeStage["Haters"] = "Low";
-                break;
-            case 1:
-                FansAttitudeStage["Haters"] = "Normal";
-                break;
-            case 2:
-                FansAttitudeStage["Haters"] = "Medium";
-                break;
-            case 3:
-                FansAttitudeStage["Haters"] = "High";
-                break;
-            default:
-                throw new System.Exception("FansAttitudeStageSet Error: HatersAttitude out of range");
-                break;
-        }
     }
 }

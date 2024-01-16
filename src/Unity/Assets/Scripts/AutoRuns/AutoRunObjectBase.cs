@@ -15,8 +15,10 @@ public abstract class AutoRunObjectBase : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        _data = new Dictionary<string, float>();
+        _buffs = new List<BuffBase>();
         Debug.Log("AutoRunObjectBase Start");
     }
 

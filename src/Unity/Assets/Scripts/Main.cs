@@ -7,11 +7,13 @@ using BuffSystem;
 public class Main : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI amountText;
+    TextMeshProUGUI Haters;
     [SerializeField]
-    TextMeshProUGUI hashtagText;
+    TextMeshProUGUI RLFans;
     [SerializeField]
-    TextMeshProUGUI likeText;
+    TextMeshProUGUI ZBFans;
+    [SerializeField]
+    TextMeshProUGUI NMFans;
     [SerializeField]
     TextMeshProUGUI riotPowerText;
     [SerializeField]
@@ -21,23 +23,18 @@ public class Main : MonoBehaviour
     EventManager eventManager;
     BuffManager buffManager;
     Fans fans;
-    // Start is called before the first frame update
     Button button1;
     Button button2;
     void Start()
     {
         gameObject.AddComponent<Fans>();
         this.fans = gameObject.GetComponent<Fans>();
-
-        Dictionary<string, float> data = new Dictionary<string, float>();
-        data.Add("amount", 100);
-        data.Add("hashtag", 100);
-        data.Add("like", 100);
-        List<BuffBase> buffs = new List<BuffBase>();
-        this.fans.Init(data, buffs);
+        gameObject.AddComponent<RiotPowerManager>();
+        this.riotPowerManager = gameObject.GetComponent<RiotPowerManager>();
 
         this.aroManager = gameObject.GetComponent<AROManager>();
         this.aroManager.Register("fans",this.fans);
+        this.aroManager.Register("riotPower",this.riotPowerManager);
 
         this.buffManager = gameObject.GetComponent<BuffManager>();
         this.buffManager.ReadBuffsFromJson("Assets/configs/Buffs.json");
@@ -51,16 +48,11 @@ public class Main : MonoBehaviour
 
         this.eventManager.AbsoluteSchedule(1, 10);
         
-        this.riotPowerManager = new RiotPowerManager();
-        //重复调用RefreshAndReval方法 3秒一次
+
+        //循环刷新数值，开启下一回合
+        //后面需要改成按钮触发
         InvokeRepeating("RefreshAndReval", 1.5f,1.5f);
 
-        amountText.text = this.fans.GetData("amount").ToString();
-        hashtagText.text = this.fans.GetData("hashtag").ToString();
-        likeText.text = this.fans.GetData("like").ToString();
-        riotPowerText.text = this.riotPowerManager.RiotPower.ToString();
-
-        
         this.button1 = GameObject.Find("ChoiceA").GetComponent<Button>();
         this.button2 = GameObject.Find("ChoiceB").GetComponent<Button>();
         this.button1.onClick.AddListener(() => {
@@ -77,10 +69,11 @@ public class Main : MonoBehaviour
     {
         this.aroManager.Refresh();
         //this.aroManager.Reveal();
-        amountText.text = this.fans.GetData("amount").ToString();
-        hashtagText.text = this.fans.GetData("hashtag").ToString();
-        likeText.text = this.fans.GetData("like").ToString();
-        riotPowerText.text = this.riotPowerManager.RiotPower.ToString();
+        ZBFans.text = this.fans.GetData("僵尸粉").ToString();
+        RLFans.text = this.fans.GetData("真爱粉").ToString();
+        NMFans.text = this.fans.GetData("路人粉").ToString();
+        Haters.text = this.fans.GetData("黑粉").ToString();
+        riotPowerText.text = this.riotPowerManager.GetData("riotPower").ToString();
         buffText.text = this.fans.RevealBuff();
     }
     
