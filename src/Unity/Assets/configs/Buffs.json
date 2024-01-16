@@ -6,7 +6,7 @@
     "TargetObject": "fans",
     "Duration": 10,
     "TargetEffects": {
-      "amount": 100
+      "僵尸粉": 100
     }
   },
   {
@@ -16,8 +16,8 @@
     "TargetObject": "fans",
     "Duration": 5,
     "TargetEffects": {
-      "amount": 0.97,
-      "like": 0.88
+      "路人粉": 0.97,
+      "真爱粉": 0.88
     }
   }
 ]

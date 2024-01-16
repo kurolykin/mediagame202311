@@ -91,6 +91,7 @@ namespace BuffSystem
             dataStr += "BuffName: " + buffName + "\n";
             dataStr += "BuffType: " + m_buffType + "\n";
             dataStr += "Duration: " + duration + "\n";
+            dataStr += "TargetObject: " + target_object + "\n";
             dataStr += "TargetEffects: " + "\n";
             foreach (KeyValuePair<string, float> kvp in target_effects)
             {

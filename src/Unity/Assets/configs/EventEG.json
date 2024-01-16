@@ -21,7 +21,7 @@
         "conditions": [
             {
                 "target_object": "fans",
-                "target_data": "amount",
+                "target_data": "僵尸粉",
                 "threshold": 200,
                 "operator": "GreaterThan"
             }
@@ -57,7 +57,7 @@
         "conditions": [
             {
                 "target_object": "fans",
-                "target_data": "amount",
+                "target_data": "僵尸粉",
                 "threshold": 200,
                 "operator": "GreaterThan"
             }
@@ -85,8 +85,8 @@
         "conditions": [
             {
                 "target_object": "fans",
-                "target_data": "amount",
-                "threshold": 200,
+                "target_data": "黑粉",
+                "threshold": 0,
                 "operator": "GreaterThan"
             }
         ]
@@ -113,8 +113,8 @@
         "conditions": [
             {
                 "target_object": "fans",
-                "target_data": "amount",
-                "threshold": 200,
+                "target_data": "黑粉",
+                "threshold": 0,
                 "operator": "GreaterThan"
             }
         ]
