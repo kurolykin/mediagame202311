@@ -26,8 +26,6 @@ public class Main : MonoBehaviour
     Button button2;
     void Start()
     {
-        
-
         gameObject.AddComponent<Fans>();
         this.fans = gameObject.GetComponent<Fans>();
 

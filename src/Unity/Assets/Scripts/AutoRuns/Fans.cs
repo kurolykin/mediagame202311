@@ -100,7 +100,7 @@ public class Fans : AutoRunObjectBase
 
     public void FansAttitudeStageSet()
     {
-        switch(_data["ZombieFansAttitude"] / 25):
+        switch (_data["ZombieFansAttitude"] / 25)
         {
             case 0:
                 FansAttitudeStage["Zombie Fans"] = "Low";
@@ -113,8 +113,12 @@ public class Fans : AutoRunObjectBase
                 break;
             case 3:
                 FansAttitudeStage["Zombie Fans"] = "High";
+                break;
+            default:
+                throw new System.Exception("FansAttitudeStageSet Error: ZombieFansAttitude out of range");
+                break;
         }
-        switch(_data["NormalFansAttitude"] / 25):
+        switch (_data["NormalFansAttitude"] / 25)
         {
             case 0:
                 FansAttitudeStage["Normal Fans"] = "Low";
@@ -127,8 +131,13 @@ public class Fans : AutoRunObjectBase
                 break;
             case 3:
                 FansAttitudeStage["Normal Fans"] = "High";
+                break;
+            default:
+                throw new System.Exception("FansAttitudeStageSet Error: NormalFansAttitude out of range");
+                break;
+
         }
-        switch(_data["RealFansAttitude"] / 25):
+        switch (_data["RealFansAttitude"] / 25)
         {
             case 0:
                 FansAttitudeStage["Real Fans"] = "Low";
@@ -141,8 +150,12 @@ public class Fans : AutoRunObjectBase
                 break;
             case 3:
                 FansAttitudeStage["Real Fans"] = "High";
+                break;
+            default:
+                throw new System.Exception("FansAttitudeStageSet Error: RealFansAttitude out of range");
+                break;
         }
-        switch(_data["HatersAttitude"] / 25):
+        switch (_data["HatersAttitude"] / 25)
         {
             case 0:
                 FansAttitudeStage["Haters"] = "Low";
@@ -155,6 +168,10 @@ public class Fans : AutoRunObjectBase
                 break;
             case 3:
                 FansAttitudeStage["Haters"] = "High";
+                break;
+            default:
+                throw new System.Exception("FansAttitudeStageSet Error: HatersAttitude out of range");
+                break;
         }
     }
 }
