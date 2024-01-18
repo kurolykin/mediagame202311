@@ -1,0 +1,65 @@
+[
+  {
+    "BuffID": 8,
+    "BuffName": "回怼-等级I",
+    "BuffType": "OneTimeAddition",
+    "TargetObject": "player",
+    "Duration": 1,
+    "TargetEffects": {
+      "热度": 10000,
+      "精力": -10
+    }
+  },
+  {
+    "BuffID": 9,
+    "BuffName": "回怼-等级II",
+    "BuffType": "OneTimeAddition",
+    "TargetObject": "player",
+    "Duration": 1,
+    "TargetEffects": {
+      "热度": 20000,
+      "精力": -20
+    }
+  },
+  {
+    "BuffID": 10,
+    "BuffName": "回怼-等级III",
+    "BuffType": "OneTimeAddition",
+    "TargetObject": "player",
+    "Duration": 1,
+    "TargetEffects": {
+      "热度": 30000,
+      "精力": -30
+    }
+  },
+  {
+    "BuffID": 11,
+    "BuffName": "忍气吞声-等级I",
+    "BuffType": "OneTimeAddition",
+    "TargetObject": "player",
+    "Duration": 1,
+    "TargetEffects": {
+      "热度": 1000
+    }
+  },
+  {
+    "BuffID": 12,
+    "BuffName": "忍气吞声-等级II",
+    "BuffType": "OneTimeAddition",
+    "TargetObject": "player",
+    "Duration": 1,
+    "TargetEffects": {
+      "热度": 2000
+    }
+  },
+  {
+    "BuffID": 13,
+    "BuffName": "忍气吞声-等级III",
+    "BuffType": "OneTimeAddition",
+    "TargetObject": "player",
+    "Duration": 1,
+    "TargetEffects": {
+      "热度": 3000
+    }
+  }
+]

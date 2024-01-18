@@ -10,18 +10,23 @@ namespace BuffSystem
     {
         public enum buffType //区分加法和乘法
         {
-            Addition,
-            Multiplication,
+            Addition, //加法，移除buff时候减去buff值
+            Multiplication, //乘法，移除buff时候除以buff值
+            Equal, //等于，移除buff时不恢复原值
+            OneTimeAddition, //一次性加法，移除buff时候不减去buff值
+            OneTimeMultiplication, //一次性乘法，移除buff时候不除以buff值
+            ContinuousAddition, //持续加法
+            ContinuousMultiplication //持续乘法
         }
         public buffType m_buffType;
         public int buffID;
         public string buffName;
         public float timer;
         public float duration;
-        public AutoRunObjectBase target_object;
+        public DataObject target_object;
         public Dictionary<string, float> target_effects; //目标数值的名称和对应的buff值
 
-        public BuffBase(buffType buffType, int buffID, string buffName, float duration, AutoRunObjectBase target_object, Dictionary<string, float> target_effects)
+        public BuffBase(buffType buffType, int buffID, string buffName, float duration, DataObject target_object, Dictionary<string, float> target_effects)
         {
             this.m_buffType = buffType;
             this.buffID = buffID;
@@ -38,14 +43,35 @@ namespace BuffSystem
 
         public virtual void OnAdd() //由 target object 在添加此buff时候调用
         {
-            if (m_buffType == buffType.Addition)
+            if (m_buffType == buffType.Addition || m_buffType == buffType.ContinuousAddition || m_buffType == buffType.OneTimeAddition)
             {
                 foreach (KeyValuePair<string, float> kvp in target_effects)
                 {
                     target_object._data[kvp.Key] += kvp.Value;
                 }
             }
-            else if (m_buffType == buffType.Multiplication)
+            else if (m_buffType == buffType.Multiplication || m_buffType == buffType.ContinuousMultiplication || m_buffType == buffType.OneTimeMultiplication)
+            {
+                foreach (KeyValuePair<string, float> kvp in target_effects)
+                {
+                    target_object._data[kvp.Key] *= kvp.Value;
+                }
+            }
+            else if (m_buffType == buffType.Equal)
+            {
+                foreach (KeyValuePair<string, float> kvp in target_effects)
+                {
+                    target_object._data[kvp.Key] = kvp.Value;
+                }
+            }
+            else if (m_buffType == buffType.OneTimeAddition)
+            {
+                foreach (KeyValuePair<string, float> kvp in target_effects)
+                {
+                    target_object._data[kvp.Key] += kvp.Value;
+                }
+            }
+            else if (m_buffType == buffType.OneTimeMultiplication)
             {
                 foreach (KeyValuePair<string, float> kvp in target_effects)
                 {
@@ -63,14 +89,14 @@ namespace BuffSystem
             }
             else //刷新目标的数据
             {
-                if (buffType.Addition == m_buffType)
+                if (m_buffType == buffType.ContinuousAddition)
                 {
                     foreach (KeyValuePair<string, float> kvp in target_effects)
                     {
                         target_object._data[kvp.Key] += kvp.Value;
                     }
                 }
-                else if (buffType.Multiplication == m_buffType)
+                else if (m_buffType == buffType.ContinuousMultiplication)
                 {
                     foreach (KeyValuePair<string, float> kvp in target_effects)
                     {
@@ -82,6 +108,20 @@ namespace BuffSystem
         public virtual void OnRemove() //由 target object 移除此buff时使用
         {
             //告知目标移除buff
+            if (m_buffType == buffType.Addition)
+            {
+                foreach (KeyValuePair<string, float> kvp in target_effects)
+                {
+                    target_object._data[kvp.Key] -= kvp.Value;
+                }
+            }
+            else if (m_buffType == buffType.Multiplication)
+            {
+                foreach (KeyValuePair<string, float> kvp in target_effects)
+                {
+                    target_object._data[kvp.Key] /= kvp.Value;
+                }
+            }
             target_object._buffsToRemove.Add(buffID);
         }
         public virtual void OnReveal() //在 target object 的 Reveal() 中调用
@@ -104,7 +144,7 @@ namespace BuffSystem
     {
         public static Dictionary<int, BuffBase> allBuffs = new Dictionary<int, BuffBase>();
         [SerializeField]
-        public AROManager aroManager;
+        public DataManager dataManager;
         void Start()
         {
             // TODO load all buffs from json
@@ -120,13 +160,18 @@ namespace BuffSystem
         {
             //从AllBuffs中实例化一个buff对象
             BuffBase buff = allBuffs[buffID];
-            buff.target_object._buffs.Add(buff); //将buff添加到目标的buff列表中
-            //调用buff的OnAdd()函数
-            if (duration != -1)
+            // 判断：如果buff是一次性buff，那么不需要添加到target_object的buff列表中
+            if (buff.m_buffType != BuffBase.buffType.OneTimeAddition && buff.m_buffType != BuffBase.buffType.OneTimeMultiplication)
             {
-                buff.duration = duration;
+                buff.target_object._buffs.Add(buffID, buff); //将buff添加到目标的buff列表中
+                if (duration != -1)
+                {
+                    buff.duration = duration;
+                }
             }
+            //调用buff的OnAdd()函数
             buff.OnAdd();
+            gameObject.GetComponent<Main>().UpdateUI();
         }
         public void RegisterBuff(BuffBase buff)
         {
@@ -168,7 +213,7 @@ namespace BuffSystem
                             break;
                         case "TargetObject":
                             string target_object = reader.ReadAsString();
-                            curBuff.target_object = aroManager.GetInstance(target_object);
+                            curBuff.target_object = dataManager.GetInstance(target_object);
                             break;
                         case "Duration":
                             curBuff.duration = (float)reader.ReadAsDouble().Value;
