@@ -12,6 +12,7 @@ public class Fans : AutoRunObjectBase
             {"路人粉", 500.0f},
             {"真爱粉", 50.0f},
             {"黑粉", 100.0f}
+            { "粉丝", 0.0f}
         };
         this._buffs = new List<BuffBase>();
         Debug.Log("Fans Start");

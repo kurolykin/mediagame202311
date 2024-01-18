@@ -1,13 +1,13 @@
 [
     {
         "eventID": 1,
-        "title": "事件1",
-        "content": "这是一个测试事件，并且是一个单向事件",
-        "image": "Assets/Events/EGEvents.jpg",
+        "title": "开始运营！",
+        "content": "这是你成为媒体运营的第一天",
+        "image": "Assets/image/newwb.jpg",
         "optionNumbers": 1,
         "isTriggered": false,
         "isRepeatable": true,
-        "scheduledTurn": 5,
+        "scheduledTurn": 1,
         "eventOptions": [
             {
                 "name": "选项1",
@@ -20,103 +20,595 @@
         ],
         "conditions": [
             {
-                "target_object": "fans",
-                "target_data": "僵尸粉",
-                "threshold": 200,
-                "operator": "GreaterThan"
+                
             }
         ]
     },
     {
         "eventID": 2,
-        "title": "事件2",
-        "content": "这是一个测试事件，并且是一个分支事件",
-        "image": "Assets/Events/EGEvents.jpg",
+        "title": "监管",
+        "content": "随着粉丝规模的扩大你得到了更多关注，不仅仅来自于粉丝。",
+        "image": "Assets/image/camera.png",
         "optionNumbers": 2,
         "isTriggered": false,
         "isRepeatable": true,
-        "scheduledTurn": 20,
+        "scheduledTurn": -1,
         "eventOptions": [
             {
-                "name": "选项1",
-                "description": "选项1",
-                "buffs": "2",
-                "duration": "5",
-                "upcoming_events": "3",
-                "event_delays": "4"
-            },
-            {
-                "name": "选项2",
-                "description": "选项2",
-                "buffs": "none",
-                "duration": "",
-                "upcoming_events": "4",
-                "event_delays": "5"
+                "name": "Big Brother is wathing you.",
+                "description": "监管压力上升了",
+                "buffs": "1",
+                "duration": "5"
+                
             }
+          
         ],
         "conditions": [
             {
                 "target_object": "fans",
-                "target_data": "僵尸粉",
-                "threshold": 200,
+                "target_data": "粉丝",
+                "threshold": 5000,
                 "operator": "GreaterThan"
             }
         ]
     },
     {
         "eventID": 3,
-        "title": "事件3",
-        "content": "这是一个测试事件，并且是一个终末事件",
-        "image": "Assets/Events/EGEvents.jpg",
+        "title": "监管",
+        "content": "随着粉丝规模的扩大你得到了更多关注，不仅仅来自于粉丝。",
+        "image": "Assets/image/camera.png",
         "optionNumbers": 1,
         "isTriggered": false,
         "isRepeatable": true,
-        "scheduledTurn": 20,
+        "scheduledTurn": -1,
         "eventOptions": [
             {
-                "name": "选项1",
-                "description": "选项1",
-                "buffs": "none",
-                "duration": "",
-                "upcoming_events": "none",
-                "event_delays": ""
+                "name": "Big Brother is wathing you.",
+                "description": "监管压力上升了",
+                "buffs": "1",
+                "duration": "5"
+                
             }
+          
         ],
         "conditions": [
             {
                 "target_object": "fans",
-                "target_data": "黑粉",
-                "threshold": 0,
+                "target_data": "粉丝",
+                "threshold": 10000,
                 "operator": "GreaterThan"
             }
         ]
     },
     {
         "eventID": 4,
-        "title": "事件4",
-        "content": "这是一个测试事件,并且是终末事件",
-        "image": "Assets/Events/EGEvents.jpg",
+        "title": "监管",
+        "content": "随着粉丝规模的扩大你得到了更多关注，不仅仅来自于粉丝。",
+        "image": "Assets/image/camera.png",
         "optionNumbers": 1,
         "isTriggered": false,
         "isRepeatable": true,
-        "scheduledTurn": 20,
+        "scheduledTurn": -1,
         "eventOptions": [
             {
-                "name": "选项1",
-                "description": "选项1",
-                "buffs": "none",
-                "duration": "",
-                "upcoming_events": "none",
-                "event_delays": ""
+                "name": "Big Brother is wathing you.",
+                "description": "监管压力上升了",
+                "buffs": "1",
+                "duration": "5"
+                
             }
+          
         ],
         "conditions": [
             {
                 "target_object": "fans",
-                "target_data": "黑粉",
-                "threshold": 0,
+                "target_data": "粉丝",
+                "threshold": 20000,
                 "operator": "GreaterThan"
             }
         ]
+    },
+    {
+        "eventID": 4,
+        "title": "圣诞节",
+        "content": "明天就是圣诞节了，你是否要联系艺人进行节日活动企划？",
+        "image": "Assets/image/santa.png",
+        "optionNumbers": 3,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 5,
+        "eventOptions": [
+            {
+                "name": "进行圣诞企划！",
+                "description": "你决定联系艺人进行圣诞活动，并和粉丝进行互动。",
+                "buffs": "2",
+                "duration": "3"
+                
+            },
+            {
+                "name":"不过洋节！",
+                "description": "你决定迎合不过洋节的主流声音，不发动企划，并控制社群中的圣诞节氛围",
+                "buffs": "3",
+                "duration": "3"
+                
+            },
+            {
+                "name": "忽视",
+                "description": "过不过圣诞节和我有什么关系？"
+               
+                
+            }
+          
+        ]
+       
+    },
+    {
+        "eventID": 5,
+        "title": "打榜应援",
+        "content": "艺人参加了选秀节目，在其中需要粉丝进行购买特定的饮料扫码进行打榜，经纪公司要求你为该活动造势",
+        "image": "Assets/image/qcyn.png",
+        "optionNumbers": 3,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 7,
+        "eventOptions": [
+            {
+                "name": "为艺人和活动进行宣传",
+                "description": "你将活动内容和艺人的宣传照发到了平台上。",
+                "buffs": "4",
+                "duration": "1"
+                
+            },
+            {
+                "name":"引导消费",
+                "description": "你决定将赞助商的宣传作为重要内容进行推广",
+                "buffs": "5",
+                "duration": "2"
+                
+            },
+            {
+                "name": "大举鼓动",
+                "description": "艺人成败在此一举，你决定操纵水军引导粉丝大量买该饮料进行打榜。",
+                "upcoming_events": "6",
+                "event_delays": "1",
+                "buffs": "6",
+                "duration": "2"
+                
+            }
+          
+        ]
+       
+    },
+    {
+        "eventID": 6,
+        "title": "买量大成功！",
+        "content": "艺人的的应援数额得到了很大提升，现已冲入决赛",
+        "image": "Assets/image/qcfinal.png",
+        "optionNumbers": 2,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 100,
+        "eventOptions": [
+            {
+                "name": "差不多得了",
+                "description": "你觉得可以交差了，决定按常规程序运营",
+                "buffs": "7",
+                "duration": "1"
+                
+            },
+            {
+                "name":"一把子冲了",
+                "description": "经纪人希望你帮艺人冲上C位，你决定加大力度。",
+                "buffs": "8",
+                "duration": "2",
+                "upcoming_events": "7",
+                "event_delays": "1"
+                
+            }
+            
+          
+        ]
+       
+    },
+    {
+        "eventID": 7,
+        "title": "告一段落",
+        "content": "艺人成功出道，虽然没争取到C位，但是也收获了不小流量，有些质疑买量行为的声音，但是影响不了艺人的成就。",
+        "image": "Assets/image/ct.png",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 100,
+        "eventOptions": [
+            {
+                "name": "这是我们应得的",
+                "description": "艺人出道成功，你获得了流量，你们都有光明的未来",
+                "buffs": "9",
+                "duration": "1"
+                
+            }
+            
+          
+        ]
+       
+    },
+    {
+        "eventID": 8,
+        "title": "上央视啦！",
+        "content": "大举买量和诱导消费引起了粉丝们的狂热购买和饮料的浪费，你的行为被央视点名批评",
+        "image": "Assets/image/ys.png",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 100,
+        "eventOptions": [
+            {
+                "name": "好像不太对",
+                "description": "虽然道德上有些错误，但是应该不会影响艺人的营销吧",
+                "buffs": "10",
+                "duration": "1",
+                "upcoming_events": "9",
+                "event_delays": "1"
+                
+                
+            }
+            
+          
+        ]
+       
+    },
+    {
+        "eventID": 9,
+        "title": "决赛取消",
+        "content": "浪费行为迎来了各路媒体的口诛笔伐，节目组受到舆论压力，决定取消决赛",
+        "image": "Assets/image/qcgg.png",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 100,
+        "eventOptions": [
+            {
+                "name": "虽然不知道发生了什么，但是好可怕的样子",
+                "description": "你运营的社群受到了大量黑粉的攻击，粉丝大量流失",
+                "buffs": "11",
+                "duration": "1"
+                
+                
+                
+            }
+            
+          
+        ]
+       
+    },
+    {
+        "eventID": 10,
+        "title": "决赛取消",
+        "content": "浪费行为迎来了各路媒体的口诛笔伐，节目组受到舆论压力，决定取消决赛",
+        "image": "Assets/image/qcgg.png",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 100,
+        "eventOptions": [
+            {
+                "name": "虽然不知道发生了什么，但是好可怕的样子",
+                "description": "你运营的社群受到了大量黑粉的攻击，粉丝大量流失",
+                "buffs": "12",
+                "duration": "1"
+                
+                
+                
+            }
+            
+          
+        ]
+       
+    },
+    {
+        "eventID": 11,
+        "title": "整治行动",
+        "content": "你的社群受到了过大的监管压力，运营的内容受到了极大影响，高压环境使你的粉丝流失",
+        "image": "Assets/image/ql.png",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 1,
+        "eventOptions": [
+            {
+                "name": "支持政策",
+                "description": "粉丝大量流失",
+                "buffs": "13",
+                "duration": "1"
+                
+                
+                
+            }
+            
+          
+        ],
+        "conditions": [
+            {
+                "target_object": "riotpower",
+                "target_data": "riotpower",
+                "threshold": 70,
+                "operator": "GreaterThan"
+            }
+        ]
+       
+    },
+    {
+        "eventID": 12,
+        "title": "劣迹艺人",
+        "content": "艺人的好友传出劣迹事件，你决定如何处理艺人的舆论场",
+        "image": "Assets/image/wyf.png",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 10,
+        "eventOptions": [
+            {
+                "name": "划清界限",
+                "description": "你决定和劣迹艺人划清界限，光速切割",
+                "buffs": "14",
+                "duration": "1"
+                
+                
+                
+            }, 
+            {
+                "name": "开炮！",
+                "description": "你决定落井下石，对劣迹艺人进行拉踩，表现出自家艺人的冰清玉洁",
+                "buffs": "15",
+                "duration": "1"
+                
+                
+                
+            },
+
+            {
+                "name": "情同手足",
+                "description": "你决定维护劣迹艺人来表现自家艺人的重情重义",
+                "buffs": "16",
+                "duration": "1"
+                
+                
+                
+            }
+          
+        ]
+        
+    },
+    {
+        "eventID": 13,
+        "title": "粉丝冲突",
+        "content": "随着粉丝群体的扩大，狂热的粉丝也越来越多，线下甚至产生了狂热粉丝和黑粉的冲突",
+        "image": "Assets/image/chongtu.png",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 13,
+        "eventOptions": [
+            {
+                "name": "进行劝导",
+                "description": "你决定疏解粉丝间的矛盾，即使这会导致部分狂热粉丝的流失",
+                "buffs": "17",
+                "duration": "1"
+                
+                
+                
+            }, 
+            {
+                "name": "战斗，爽",
+                "description": "你决定放任粉丝，既然冲突会带来流量，那为什么放弃这个机会呢",
+                "buffs": "18",
+                "duration": "1"
+                
+                
+                
+            }
+            
+          
+        ]
+        
+    },
+    {
+        "eventID": 14,
+        "title": "粉丝冲突",
+        "content": "随着粉丝群体的扩大，狂热的粉丝也越来越多，线下甚至产生了狂热粉丝和黑粉的冲突",
+        "image": "Assets/image/chongtu.png",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 13,
+        "eventOptions": [
+            {
+                "name": "进行劝导",
+                "description": "你决定疏解粉丝间的矛盾，即使这会导致部分狂热粉丝的流失",
+                "buffs": "19",
+                "duration": "1"
+                
+                
+                
+            }, 
+            {
+                "name": "战斗，爽",
+                "description": "你决定放任粉丝，既然冲突会带来流量，那为什么放弃这个机会呢",
+                "buffs": "20",
+                "duration": "1"
+                
+                
+                
+            }
+            
+          
+        ]
+        
+    },
+    {
+        "eventID": 15,
+        "title": "演艺公司内讧",
+        "content": "公司内部出现了艺人之间的矛盾，可能涉及利益分配、排名等问题，情况复杂。你需要采取行动来维护公司的团队合作氛围。",
+        "image": "Assets/image/yygs.png",
+        "optionNumbers": 2,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 15,
+        "eventOptions": [
+            {
+                "name": "调停和解",
+                "description": "你决定成为调解者，寻找双方的共同利益点，解决矛盾，维护公司的整体利益。",
+                "buffs": "21",
+                "duration": "1"
+            },
+            
+            {
+                "name": "公开回应",
+                "description": "你选择公开回应内部矛盾，强调公司团队的凝聚力，试图在外界树立积极形象。",
+                "buffs": "22",
+                "duration": "1"
+            }
+        ]
+    },
+    {
+        "eventID": 16,
+        "title": "粉丝狂欢",
+        "content": "最新一场演唱会成功举办，粉丝们狂欢不已，社交媒体上充斥着感动和热情的留言。你需要决定如何利用这股正面能量。",
+        "image": "Assets/image/fans_celebration.png",
+        "optionNumbers": 3,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 18,
+        "eventOptions": [
+            {
+                "name": "感恩回馈",
+                "description": "你决定加强和粉丝间的联系，邀请艺人积极参与和粉丝的互动",
+                "buffs": "23",
+                "duration": "1"
+            },
+            
+            {
+                "name": "保持低调",
+                "description": "为了保持艺人和粉丝的距离，你决定不扩大社交媒体对艺人的影响",
+                "buffs": "24",
+                "duration": "1"
+            }
+        ]
+    },
+    {
+        "eventID": 17,
+        "title": "社交媒体风波",
+        "content": "艺人的一条社交媒体发布引发了一场风波，舆论分歧严重。作为经纪人，你需要迅速应对这一局势，以保护艺人的声誉。",
+        "image": "Assets/image/df.png",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 20,
+        "eventOptions": [
+            {
+                "name": "公开道歉",
+                "description": "你决定为艺人发布公开道歉，试图平息舆论风波，强调艺人的真诚和成长。",
+                "buffs": "25",
+                "duration": "1"
+            },
+            {
+                "name": "沉默应对",
+                "description": "你选择在短期内保持沉默，避免进一步激化矛盾，等待舆论冷却。",
+                "buffs": "26",
+                "duration": "1"
+            },
+            {
+                "name": "解释立场",
+                "description": "你决定通过发表一份详细的解释声明，阐明艺人的立场，期望获得理解。",
+                "buffs": "27",
+                "duration": "1"
+            }
+        ]
+    },
+    {
+        "eventID": 18,
+        "title": "虚假传闻曝光",
+        "content": "有媒体爆出关于艺人的虚假传闻，社交媒体上引起热议。你需要制定策略来面对这一虚假信息对艺人形象的影响。",
+        "image": "Assets/image/false_rumors_exposed.png",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 22,
+        "eventOptions": [
+            {
+                "name": "法律行动",
+                "description": "你决定采取法律手段，对虚假传闻进行起诉，以保护艺人的名誉。",
+                "buffs": "28",
+                "duration": "1"
+            },
+            {
+                "name": "低调澄清",
+                "description": "你选择通过低调澄清的方式，发布短文澄清虚假传闻，避免过度引起关注。",
+                "buffs": "29",
+                "duration": "1"
+            },
+            {
+                "name": "粉丝信任宣言",
+                "description": "你决定通过社交媒体发表关于粉丝信任的宣言，强调艺人一直以来的真诚与坚持。",
+                "buffs": "30",
+                "duration": "1"
+            }
+        ]
+    },
+    {
+        "eventID": 19,
+        "title": "网络暴力抨击",
+        "content": "艺人在社交媒体上遭受网络暴力的抨击，言论攻击愈演愈烈。作为经纪人，你需要制定紧急应对措施来保护艺人的心理健康和公众形象。",
+        "image": "Assets/image/cyber_bullying.png",
+        "optionNumbers": 2,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 25,
+        "eventOptions": [
+           
+            {
+                "name": "公开反击",
+                "description": "你选择通过公开反击，回应网络暴力，捍卫艺人的权益，但也可能引起更大的争议。",
+                "buffs": "31",
+                "duration": "1"
+            },
+            {
+                "name": "默默忍受",
+                "description": "你决定暂时忍受网络暴力，不做公开回应，以期待舆论逐渐冷却。",
+                "buffs": "65",
+                "duration": "2"
+            }
+        ]
+    },
+    {
+        "eventID": 20,
+        "title": "虚假社交媒体账号",
+        "content": "发现有人冒充艺人在社交媒体上发布虚假信息，引起了一些误导和混淆。作为经纪人，你需要采取措施来揭露虚假账号并恢复艺人的声誉。",
+        "image": "Assets/image/fake_social_media_account.png",
+        "optionNumbers": 2,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 28,
+        "eventOptions": [
+            {
+                "name": "举报冒充",
+                "description": "你决定积极向社交媒体平台举报冒充艺人的虚假账号，并寻求迅速删除虚假信息。",
+                "buffs": "33",
+                "duration": "1"
+            },
+            {
+                "name": "公开辟谣",
+                "description": "你选择通过公开渠道辟谣，澄清艺人与虚假账号无关，并提醒粉丝辨别真伪。",
+                "buffs": "34",
+                "duration": "1"
+            },
+            {
+                "name": "发起粉丝宣传",
+                "description": "你决定动员艺人的粉丝团体，共同发起宣传活动，以揭露虚假账号，增强声势。",
+                "buffs": "35",
+                "duration": "2"
+            }
+        ]
     }
+
 ]
