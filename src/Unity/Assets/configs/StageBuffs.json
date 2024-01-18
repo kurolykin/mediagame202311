@@ -35,7 +35,7 @@
   },
   {
     "BuffID": 3,
-    "BuffName": "网爆-高潮",
+    "BuffName": "网爆-爆发",
     "BuffType": "Addition",
     "TargetObject": "player",
     "Duration": 5,
@@ -47,14 +47,14 @@
   },
   {
     "BuffID": 4,
-    "BuffName": "网爆-退潮",
+    "BuffName": "网爆-高潮",
     "BuffType": "Addition",
     "TargetObject": "player",
     "Duration": 5,
     "TargetEffects": {
-      "压力增速": -0.0025,
-      "热度增速": -0.16,
-      "热度等级": 2
+      "压力增速": 0.15,
+      "热度增速": 0.32,
+      "热度等级": 4
     }
   },
   {

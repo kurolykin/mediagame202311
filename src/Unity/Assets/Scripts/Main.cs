@@ -45,17 +45,22 @@ public class Main : MonoBehaviour
         this.buffManager.ReadBuffsFromJson("Assets/configs/StageBuffs.json");
         this.buffManager.ReadBuffsFromJson("Assets/configs/骂街-Buffs.json");
         this.buffManager.ReadBuffsFromJson("Assets/configs/快捷buff.json");
+        this.buffManager.ReadBuffsFromJson("Assets/configs/阶段3buff.json");
+        this.buffManager.ReadBuffsFromJson("Assets/configs/死亡.json");
         
         this.buffManager.PrintBuffs();
 
         this.eventManager = gameObject.GetComponent<EventManager>();
         this.eventManager.ReadEventsFromJson("Assets/configs/骂街.json");
-        this.eventManager.ReadEventsFromJson("Assets/configs/Stage0.json");
         this.eventManager.ReadEventsFromJson("Assets/configs/Stage1.json");
+        this.eventManager.ReadEventsFromJson("Assets/configs/Stage2.json");
+        this.eventManager.ReadEventsFromJson("Assets/configs/Stage3.json");
         this.eventManager.ReadEventsFromJson("Assets/configs/家门破坏.json");
+        this.eventManager.ReadEventsFromJson("Assets/configs/阶段3随机.json");
         this.eventManager.PrintEvents();
 
-        this.eventManager.AbsoluteSchedule(1, 1);
+
+        this.eventManager.ShowEvent(1);
 
         
         UpdateUI();

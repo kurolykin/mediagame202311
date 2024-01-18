@@ -1,0 +1,42 @@
+[
+  {
+    "BuffID": 99,
+    "BuffName": "死亡",
+    "BuffType": "Equal",
+    "TargetObject": "player",
+    "Duration": 10000,
+    "TargetEffects": {
+      "死亡方式": 0
+    }
+  },
+  {
+    "BuffID": 98,
+    "BuffName": "死亡",
+    "BuffType": "Equal",
+    "TargetObject": "player",
+    "Duration": 10000,
+    "TargetEffects": {
+      "死亡方式": 1
+    }
+  },
+  {
+    "BuffID": 97,
+    "BuffName": "死亡",
+    "BuffType": "Equal",
+    "TargetObject": "player",
+    "Duration": 10000,
+    "TargetEffects": {
+      "死亡方式": 2
+    }
+  },
+  {
+    "BuffID": 96,
+    "BuffName": "死亡",
+    "BuffType": "Equal",
+    "TargetObject": "player",
+    "Duration": 10000,
+    "TargetEffects": {
+      "死亡方式": 3
+    }
+  }
+]

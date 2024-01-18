@@ -1,0 +1,35 @@
+[
+  {
+    "BuffID": 22,
+    "BuffName": "热搜！",
+    "BuffType": "Addition",
+    "TargetObject": "player",
+    "Duration": 10,
+    "TargetEffects": {
+      "热度增速": 0.10,
+      "压力增速": 0.05,
+      "上热搜了": 1
+    }
+  },
+  {
+    "BuffID": 23,
+    "BuffName": "意志消沉",
+    "BuffType": "Addition",
+    "TargetObject": "player",
+    "Duration": 10,
+    "TargetEffects": {
+      "压力增速": 0.05
+    }
+  },
+  {
+    "BuffID": 24,
+    "BuffName": "舆论管控",
+    "BuffType": "Addition",
+    "TargetObject": "player",
+    "Duration": 10,
+    "TargetEffects": {
+      "热度增速": -0.25,
+      "压力增速": -0.10
+    }
+  }
+]

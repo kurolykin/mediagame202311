@@ -58,5 +58,25 @@
         "TargetEffects": {
             "心理压力": -20
         }
+    },
+    {
+        "BuffID": 20,
+        "BuffName": "压力+30",
+        "BuffType": "OneTimeAddition",
+        "TargetObject": "player",
+        "Duration": 1,
+        "TargetEffects": {
+            "心理压力": 30
+        }
+    },
+    {
+        "BuffID": 21,
+        "BuffName": "压力-30",
+        "BuffType": "OneTimeAddition",
+        "TargetObject": "player",
+        "Duration": 1,
+        "TargetEffects": {
+            "心理压力": -30
+        }
     }
 ]
