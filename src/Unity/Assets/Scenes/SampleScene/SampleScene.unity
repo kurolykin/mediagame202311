@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 232854344}
   - component: {fileID: 232854343}
   m_Layer: 5
-  m_Name: "\u50F5\u5C38\u7C89"
+  m_Name: "\u53D6\u8BC1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -856,7 +856,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6062\u590D\u4F53\u529B\u503C"
+  m_Text: "\u65B0\u7684\u4E00\u5929"
 --- !u!222 &425447362
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -877,7 +877,7 @@ GameObject:
   - component: {fileID: 486462567}
   - component: {fileID: 486462566}
   m_Layer: 5
-  m_Name: "\u9ED1\u7C89"
+  m_Name: "\u70ED\u5EA6\u589E\u901F"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1547,7 +1547,7 @@ GameObject:
   - component: {fileID: 766634379}
   - component: {fileID: 766634378}
   m_Layer: 5
-  m_Name: "\u8DEF\u4EBA\u7C89"
+  m_Name: "\u538B\u529B"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3185,7 +3185,7 @@ GameObject:
   - component: {fileID: 1562041908}
   - component: {fileID: 1562041907}
   m_Layer: 0
-  m_Name: FansObject
+  m_Name: "\u903B\u8F91\u63A7\u4EF6"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3203,11 +3203,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e64596c2c214dec8a9cb7a533b570d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Haters: {fileID: 486462566}
-  RLFans: {fileID: 1180306961}
-  ZBFans: {fileID: 232854343}
-  NMFans: {fileID: 766634378}
-  riotPowerText: {fileID: 2028809611}
+  popularityText: {fileID: 1180306961}
+  pressureText: {fileID: 766634378}
+  evidenceText: {fileID: 232854343}
+  popularityIncreaseText: {fileID: 486462566}
+  stageText: {fileID: 2028809611}
   buffText: {fileID: 816641072}
   strength: {fileID: 1721432345}
   popupText: {fileID: 2029473686}
@@ -3240,7 +3240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventPanel: {fileID: 926661204}
   userChoiceIndex: -1
-  aroManager: {fileID: 1562041909}
+  dataManager: {fileID: 1562041909}
   buffManager: {fileID: 1562041908}
 --- !u!114 &1562041908
 MonoBehaviour:
@@ -3480,7 +3480,7 @@ GameObject:
   - component: {fileID: 1699130252}
   - component: {fileID: 1699130251}
   m_Layer: 5
-  m_Name: Supervision Panel
+  m_Name: Stage Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3815,7 +3815,7 @@ GameObject:
   - component: {fileID: 1786204048}
   - component: {fileID: 1786204049}
   m_Layer: 5
-  m_Name: Spv Title
+  m_Name: Stage Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3881,7 +3881,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u76D1\u7BA1\u538B\u529B"
+  m_Text: "\u70ED\u5EA6\u7B49\u7EA7"
 --- !u!1 &1860812767
 GameObject:
   m_ObjectHideFlags: 0

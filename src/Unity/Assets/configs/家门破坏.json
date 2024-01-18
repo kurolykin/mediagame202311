@@ -1,0 +1,158 @@
+[
+    {
+        "eventID": 16,
+        "eventName": "家门口的秽物",
+        "content": "当你早上起来打开门，就看到自己的家门口被人泼洒了粪便",
+        "image": "Assets/Events/Images/11.jpg",
+        "optionNumbers": 2,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "清理",
+                "description": "Yue~",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "17",
+                "event_delays": "0"
+            },
+            {
+                "name": "我要查监控！",
+                "description": "出门找物业...",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "18",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 17,
+        "eventName": "忙碌的一天",
+        "content": "清理家门口的粪便使你筋疲力尽，你洗了5遍澡，还觉得身上有味道",
+        "image": "Assets/Events/Images/12.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "和领导请个假吧",
+                "description": "我要去睡一会儿...(心理压力+20)",
+                "buffs": "18",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 18,
+        "eventName": "监控坏了...",
+        "content": " “楼道里面的监控坏了！”一脸尖酸的物业大妈说道。你转身离开时，还听见他在背后嘀咕：“做出这种事情还好意思来看监控，要是我的话哪还有脸出门见人！”",
+        "image": "Assets/Events/Images/13.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "晦气！",
+                "description": "死八婆嘀咕什么呢？（心理压力+5）",
+                "buffs": "15",
+                "duration": "0",
+                "upcoming_events": "17",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 19,
+        "eventName": "污言秽语",
+        "content": "早上起来走出家门，你看到自己的家门口被人用红色油漆写满了污言秽语，门上还喷了个大大的“死”字",
+        "image": "Assets/Events/Images/14.jpg",
+        "optionNumbers": 2,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "默默清理",
+                "description": "Yue~",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "20",
+                "event_delays": "0"
+            },
+            {
+                "name": "我要查监控！",
+                "description": "出门找物业...",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "18",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 20,
+        "eventName": "忙碌的一天",
+        "content": "清理家门口的污言秽语使你筋疲力尽，但是红色的油漆还是留在了门上",
+        "image": "Assets/Events/Images/15.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "和领导请个假吧",
+                "description": "我要去睡一会儿...(心理压力+20)",
+                "buffs": "18",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    }
+]

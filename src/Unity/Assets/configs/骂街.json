@@ -4,7 +4,7 @@
         "title": "谩骂-等级I",
         "content": "铺天盖地的谩骂袭来。这些莫名其妙的恶意使你压力倍增。",
         "image": "Assets/Events/Images/1.jpg",
-        "optionNumbers": 1,
+        "optionNumbers": 2,
         "isTriggered": false,
         "isRepeatable": true,
         "scheduledTurn": 0,
@@ -12,17 +12,17 @@
             {
                 "name": "回怼",
                 "description": "兵来将挡，水来土掩（精力-10，热度+10000）",
-                "buffs": "none",
-                "duration": "",
-                "upcoming_events": "7",
+                "buffs": "8",
+                "duration": "0",
+                "upcoming_events": "9",
                 "event_delays": "0"
             },
             {
                 "name": "忍气吞声",
                 "description": "忍气吞声（热度+1000）",
-                "buffs": "none",
-                "duration": "",
-                "upcoming_events": "8",
+                "buffs": "11",
+                "duration": "0",
+                "upcoming_events": "10",
                 "event_delays": "0"
             }
         ],
@@ -38,9 +38,9 @@
     {
         "eventID": 7,
         "title": "谩骂-等级II",
-        "content": "铺天盖地的谩骂袭来。这些莫名其妙的恶意使你压力倍增。",
+        "content": "网友们开始对你的祖宗十八代进行问候。这些莫名其妙的恶意使你压力倍增。",
         "image": "Assets/Events/Images/1.jpg",
-        "optionNumbers": 1,
+        "optionNumbers": 2,
         "isTriggered": false,
         "isRepeatable": true,
         "scheduledTurn": 0,
@@ -48,16 +48,16 @@
             {
                 "name":"回怼",
                 "description":"兵来将挡，水来土掩（精力-10，热度+50000）",
-                "buffs":"none",
-                "duration":"",
+                "buffs":"9",
+                "duration":"0",
                 "upcoming_events":"9",
                 "event_delays":"0"
             },
             {
                 "name":"忍气吞声",
                 "description":"忍气吞声（热度+5000）",
-                "buffs":"none",
-                "duration":"",
+                "buffs":"12",
+                "duration":"0",
                 "upcoming_events":"10",
                 "event_delays":"0"
             }
@@ -74,9 +74,9 @@
     {
         "eventID": 8,
         "title": "谩骂-等级III",
-        "content": "铺天盖地的谩骂袭来。这些莫名其妙的恶意使你压力倍增。",
+        "content": "网友们的谩骂已经上升到对人群、性别、国家、种族的肆意攻击，这样大规模的骂战使你压力倍增。",
         "image": "Assets/Events/Images/1.jpg",
-        "optionNumbers": 1,
+        "optionNumbers": 2,
         "isTriggered": false,
         "isRepeatable": true,
         "scheduledTurn": 0,
@@ -84,16 +84,16 @@
             {
                 "name":"回怼",
                 "description":"兵来将挡，水来土掩（精力-10，热度+100000）",
-                "buffs":"none",
-                "duration":"",
+                "buffs":"10",
+                "duration":"0",
                 "upcoming_events":"9",
                 "event_delays":"0"
             },
             {
                 "name":"忍气吞声",
                 "description":"忍气吞声（热度+10000）",
-                "buffs":"none",
-                "duration":"",
+                "buffs":"13",
+                "duration":"0",
                 "upcoming_events":"10",
                 "event_delays":"0"
             }
@@ -120,10 +120,10 @@
             {
                 "name":"爽！",
                 "description":"心理压力-5",
-                "buffs":"none",
-                "duration":"",
-                "upcoming_events":"8",
-                "event_delays":"1"
+                "buffs":"14",
+                "duration":"0",
+                "upcoming_events":"none",
+                "event_delays":"0"
             }
         ],
         "conditions":[
@@ -148,10 +148,10 @@
             {
                 "name":"忍一时乳腺增生...",
                 "description":"心理压力+5",
-                "buffs":"none",
-                "duration":"",
-                "upcoming_events":"9",
-                "event_delays":"1"
+                "buffs":"15",
+                "duration":"0",
+                "upcoming_events":"none",
+                "event_delays":"0"
             }
         ],
         "conditions":[

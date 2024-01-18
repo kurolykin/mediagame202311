@@ -7,15 +7,15 @@ using BuffSystem;
 public class Main : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI Haters;
+    TextMeshProUGUI popularityText;
     [SerializeField]
-    TextMeshProUGUI RLFans;
+    TextMeshProUGUI pressureText;
     [SerializeField]
-    TextMeshProUGUI ZBFans;
+    TextMeshProUGUI evidenceText;
     [SerializeField]
-    TextMeshProUGUI NMFans;
+    TextMeshProUGUI popularityIncreaseText;
     [SerializeField]
-    TextMeshProUGUI riotPowerText;
+    TextMeshProUGUI stageText;
     [SerializeField]
     Text buffText;
     DataManager dataManager;
@@ -31,7 +31,6 @@ public class Main : MonoBehaviour
     //体力值不足弹窗
     [SerializeField]
     TextMeshProUGUI popupText;
-    private int valueA = 100;
 
     void Start()
     {
@@ -42,17 +41,22 @@ public class Main : MonoBehaviour
         this.dataManager.Register("player", this.player);
 
         this.buffManager = gameObject.GetComponent<BuffManager>();
-        this.buffManager.ReadBuffsFromJson("Assets/configs/骂街-Buffs.json");
+        //批量读取buff文件
         this.buffManager.ReadBuffsFromJson("Assets/configs/StageBuffs.json");
+        this.buffManager.ReadBuffsFromJson("Assets/configs/骂街-Buffs.json");
+        this.buffManager.ReadBuffsFromJson("Assets/configs/快捷buff.json");
+        
         this.buffManager.PrintBuffs();
 
         this.eventManager = gameObject.GetComponent<EventManager>();
         this.eventManager.ReadEventsFromJson("Assets/configs/骂街.json");
         this.eventManager.ReadEventsFromJson("Assets/configs/Stage0.json");
+        this.eventManager.ReadEventsFromJson("Assets/configs/Stage1.json");
+        this.eventManager.ReadEventsFromJson("Assets/configs/家门破坏.json");
         this.eventManager.PrintEvents();
 
-        //this.eventManager.AbsoluteSchedule(1, 1);
-        this.eventManager.ShowEvent(1);
+        this.eventManager.AbsoluteSchedule(1, 1);
+
         
         UpdateUI();
 
@@ -67,9 +71,6 @@ public class Main : MonoBehaviour
             this.DecreaseBy10();
         });
         this.button3.onClick.AddListener(() => {
-            valueA = 100;
-            strength.text = "strength:" + valueA.ToString();
-            popupText.text = "";
             this.RefreshAndReval(); //下一回合
         });
 
@@ -88,9 +89,9 @@ public class Main : MonoBehaviour
 
     void DecreaseBy5()
     {
-        if (valueA >= 5)
+        if (this.player.GetData("精力") >= 5)
         {
-            valueA -= 5;
+            this.player.SetData("精力", this.player.GetData("精力") - 5);
         }
         else
         {
@@ -103,9 +104,9 @@ public class Main : MonoBehaviour
 
     void DecreaseBy10()
     {
-        if (valueA >= 10)
+        if (this.player.GetData("精力") >= 10)
         {
-            valueA -= 10;
+            this.player.SetData("精力", this.player.GetData("精力") - 10);
         }
         else
         {
@@ -118,14 +119,13 @@ public class Main : MonoBehaviour
 
     public void UpdateUI()
     {
-        strength.text = "strength:" + valueA.ToString();
-        ZBFans.text = this.player.GetData("热度").ToString();
-        NMFans.text = this.player.GetData("心理压力").ToString();
-        RLFans.text = this.player.GetData("取证进度").ToString();
-        Haters.text = this.player.GetData("热度增速").ToString();
-        riotPowerText.text = this.player.GetData("热度等级").ToString();
+        strength.text = this.player.GetData("精力").ToString();
+        popularityText.text = this.player.GetData("热度").ToString();
+        pressureText.text = this.player.GetData("心理压力").ToString();
+        evidenceText.text = this.player.GetData("证据").ToString();
+        popularityIncreaseText.text = this.player.GetData("热度增速").ToString();
+        stageText.text = this.player.GetData("热度等级").ToString();
         buffText.text = this.player.RevealBuff();
-        //this.GetComponent("体力值") = 
     }
 
     void RefreshAndReval()

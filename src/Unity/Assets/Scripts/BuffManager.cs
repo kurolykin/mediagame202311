@@ -43,14 +43,14 @@ namespace BuffSystem
 
         public virtual void OnAdd() //由 target object 在添加此buff时候调用
         {
-            if (m_buffType == buffType.Addition)
+            if (m_buffType == buffType.Addition || m_buffType == buffType.ContinuousAddition || m_buffType == buffType.OneTimeAddition)
             {
                 foreach (KeyValuePair<string, float> kvp in target_effects)
                 {
                     target_object._data[kvp.Key] += kvp.Value;
                 }
             }
-            else if (m_buffType == buffType.Multiplication)
+            else if (m_buffType == buffType.Multiplication || m_buffType == buffType.ContinuousMultiplication || m_buffType == buffType.OneTimeMultiplication)
             {
                 foreach (KeyValuePair<string, float> kvp in target_effects)
                 {
@@ -64,14 +64,14 @@ namespace BuffSystem
                     target_object._data[kvp.Key] = kvp.Value;
                 }
             }
-            else if (m_buffType == buffType.OneTimeAddition || m_buffType == buffType.ContinuousAddition)
+            else if (m_buffType == buffType.OneTimeAddition)
             {
                 foreach (KeyValuePair<string, float> kvp in target_effects)
                 {
                     target_object._data[kvp.Key] += kvp.Value;
                 }
             }
-            else if (m_buffType == buffType.OneTimeMultiplication || m_buffType == buffType.ContinuousAddition)
+            else if (m_buffType == buffType.OneTimeMultiplication)
             {
                 foreach (KeyValuePair<string, float> kvp in target_effects)
                 {
@@ -160,12 +160,16 @@ namespace BuffSystem
         {
             //从AllBuffs中实例化一个buff对象
             BuffBase buff = allBuffs[buffID];
-            buff.target_object._buffs.Add(buffID, buff); //将buff添加到目标的buff列表中
-            //调用buff的OnAdd()函数
-            if (duration != -1)
+            // 判断：如果buff是一次性buff，那么不需要添加到target_object的buff列表中
+            if (buff.m_buffType != BuffBase.buffType.OneTimeAddition && buff.m_buffType != BuffBase.buffType.OneTimeMultiplication)
             {
-                buff.duration = duration;
+                buff.target_object._buffs.Add(buffID, buff); //将buff添加到目标的buff列表中
+                if (duration != -1)
+                {
+                    buff.duration = duration;
+                }
             }
+            //调用buff的OnAdd()函数
             buff.OnAdd();
             gameObject.GetComponent<Main>().UpdateUI();
         }

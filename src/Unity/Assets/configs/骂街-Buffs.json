@@ -61,25 +61,5 @@
     "TargetEffects": {
       "热度": 3000
     }
-  },
-  {
-    "BuffID": 14,
-    "BuffName": "神清气爽",
-    "BuffType": "OneTimeAddition",
-    "TargetObject": "player",
-    "Duration": 1,
-    "TargetEffects": {
-      "心理压力": -5
-    }
-  },
-  {
-    "BuffID": 15,
-    "BuffName": "越想越气",
-    "BuffType": "OneTimeAddition",
-    "TargetObject": "player",
-    "Duration": 1,
-    "TargetEffects": {
-      "心理压力": 5
-    }
   }
 ]

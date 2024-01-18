@@ -25,7 +25,7 @@ public class DataObject : MonoBehaviour
         this._data.Add("热度增速", 0);
         this._data.Add("热度等级", 0);
         this._data.Add("压力增速", 0);
-        this._data.Add("精力", 10);
+        this._data.Add("精力", 100);
     }
 
     // 初始化方法，用于设置数据和buff
@@ -60,8 +60,10 @@ public class DataObject : MonoBehaviour
             _buffsToRemove.Clear();
         }
         this._data["热度"] *= 1+this._data["热度增速"];
-        this._data["心理压力"] *= 1+this._data["压力增速"];
-        this._data["精力"] = Mathf.Clamp(this._data["精力"] + this._data["压力增速"], 0, 100);
+        // 压力上限100
+        this._data["心理压力"] = Mathf.Min(this._data["心理压力"] + this._data["压力增速"], 100);
+        // 每回合恢复100精力,上限100
+        this._data["精力"] = Mathf.Min(this._data["精力"] + 100, 100);
     }
 
     public virtual void Reveal()

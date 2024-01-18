@@ -40,18 +40,18 @@
             {
                 "name": "置之不理",
                 "description": "清者自清！",
-                "buffs": "none",
-                "duration": "",
+                "buffs": "1",
+                "duration": "4",
                 "upcoming_events": "3",
-                "event_delays": "4"
+                "event_delays": "1"
             },
             {
                 "name": "回击",
                 "description": "你算个什么***",
-                "buffs": "none",
-                "duration": "",
+                "buffs": "1",
+                "duration": "4",
                 "upcoming_events": "4",
-                "event_delays": "5"
+                "event_delays": "1"
             }
         ],
         "conditions": [
@@ -132,10 +132,10 @@
             {
                 "name": "网爆开始了",
                 "description": "我要怎么办？",
-                "buffs": "0,2",
-                "duration": "0,100000",
-                "upcoming_events": "none",
-                "event_delays": ""
+                "buffs": "2",
+                "duration": "8",
+                "upcoming_events": "11",
+                "event_delays": "5"
             }
         ],
         "conditions": [

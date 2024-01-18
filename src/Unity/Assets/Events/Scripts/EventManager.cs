@@ -120,7 +120,7 @@ public class EventManager : MonoBehaviour
     GameObject eventPanel;
     public int userChoiceIndex = -1;
     [SerializeField]
-    public DataManager aroManager;
+    public DataManager dataManager;
     [SerializeField]
     BuffManager buffManager;
     // Start is called before the first frame update
@@ -129,10 +129,6 @@ public class EventManager : MonoBehaviour
         // TODO: 从文件中读取所有事件
         // 绑定按钮
         Button[] buttons = eventPanel.transform.Find("Buttons").GetComponentsInChildren<Button>();
-        foreach (Button button in buttons)
-        {
-            button.onClick.AddListener(delegate () { ClickChoice(int.Parse(button.name.Substring(6)) - 1); });
-        }
     }
     public bool JudgeCondition(List<Tuple<string, string, int, EventBase.compareOperator>> conditions)
     {
@@ -143,31 +139,31 @@ public class EventManager : MonoBehaviour
                 switch (condition.Item4)
                 {
                     case EventBase.compareOperator.GreaterThan:
-                        if (aroManager.GetData(condition.Item1, condition.Item2) <= condition.Item3)
+                        if (dataManager.GetData(condition.Item1, condition.Item2) <= condition.Item3)
                         {
                             return false;
                         }
                         break;
                     case EventBase.compareOperator.LessThan:
-                        if (aroManager.GetData(condition.Item1, condition.Item2) >= condition.Item3)
+                        if (dataManager.GetData(condition.Item1, condition.Item2) >= condition.Item3)
                         {
                             return false;
                         }
                         break;
                     case EventBase.compareOperator.EqualTo:
-                        if (aroManager.GetData(condition.Item1, condition.Item2) != condition.Item3)
+                        if (dataManager.GetData(condition.Item1, condition.Item2) != condition.Item3)
                         {
                             return false;
                         }
                         break;
                     case EventBase.compareOperator.GreaterThanOrEqualTo:
-                        if (aroManager.GetData(condition.Item1, condition.Item2) < condition.Item3)
+                        if (dataManager.GetData(condition.Item1, condition.Item2) < condition.Item3)
                         {
                             return false;
                         }
                         break;
                     case EventBase.compareOperator.LessThanOrEqualTo:
-                        if (aroManager.GetData(condition.Item1, condition.Item2) > condition.Item3)
+                        if (dataManager.GetData(condition.Item1, condition.Item2) > condition.Item3)
                         {
                             return false;
                         }
@@ -186,55 +182,29 @@ public class EventManager : MonoBehaviour
         {
             foreach (KeyValuePair<int, EventBase> pendingEvent in pendingEvents)
             {
-                if (pendingEvent.Value.scheduledTurn <= aroManager.turn && this.JudgeCondition(pendingEvent.Value.conditions))
+                if (pendingEvent.Value.scheduledTurn <= dataManager.turn && this.JudgeCondition(pendingEvent.Value.conditions))
                 {
                     //显示事件窗口
                     showWindow(pendingEvent.Value);
-                    //暂停时间，等待玩家选择
-                    Time.timeScale = 0;
-                    //根据玩家选择，施加效果
-                    if (userChoiceIndex >= 0 && userChoiceIndex < pendingEvent.Value.optionNumbers)
-                    {
-                        Option selectedOption = pendingEvent.Value.eventOptions[userChoiceIndex];
-                        if (selectedOption.buffs.Count > 0)
-                        {
-                            foreach (KeyValuePair<int, int> buff in selectedOption.buffs)
-                            {
-                                // 批量设置buff
-                                buffManager.ActivateBuff(buff.Key, buff.Value);
-                            }
-                        }
-                        if (selectedOption.upcoming_events.Count > 0)
-                        {
-                            foreach (KeyValuePair<int, int> upcoming_event in selectedOption.upcoming_events)
-                            {
-                                //批量设置接续
-                                RelativeSchedule(upcoming_event.Key, upcoming_event.Value);
-                            }
-                        }
-                        //效果施加完毕，从待选事件列表中移除
-                        pendingEvents.Remove(pendingEvent.Key);
-                        //关闭事件窗口
-                        eventPanel.SetActive(false);
-                        //重置玩家选择
-                        userChoiceIndex = -1;
-                        // 恢复时间
-                        Time.timeScale = 1;
-                    }
-
                 }
+
             }
-            // 移除已经触发的事件
         }
     }
+
 
     //强制触发事件
     public void ShowEvent(int eventID)
     {
         EventBase currentEvent = allEvents[eventID];
         showWindow(currentEvent);
-        while (true)
+    }
+    public void ClickChoice(int choiceIndex, int eventID = -1)
+    {
+        userChoiceIndex = choiceIndex;
+        if (eventID >= 0)
         {
+            EventBase currentEvent = allEvents[eventID];
             if (userChoiceIndex >= 0 && userChoiceIndex < currentEvent.optionNumbers)
             {
                 Debug.Log("User choice: " + userChoiceIndex);
@@ -257,16 +227,16 @@ public class EventManager : MonoBehaviour
                 }
                 //关闭事件窗口
                 eventPanel.SetActive(false);
+                //从待选事件列表中移除
+                if (this.pendingEvents.ContainsKey(eventID))
+                {
+                    this.pendingEvents.Remove(eventID);
+                }
                 //重置玩家选择
                 userChoiceIndex = -1;
-                break;
+                gameObject.GetComponent<Main>().UpdateUI();
             }
         }
-    }
-    public void ClickChoice(int choiceIndex)
-    {
-        userChoiceIndex = choiceIndex;
-        Time.timeScale = 1;
     }
 
     // 设置时间窗口并显示时间窗口
@@ -282,7 +252,12 @@ public class EventManager : MonoBehaviour
         // 设置事件窗口的选项
         for (int i = 0; i < currentEvent.optionNumbers; i++)
         {
-            ButtonPanel.Find("Choice" + (i + 1)).GetComponentInChildren<Text>().text = currentEvent.eventOptions[i].name;
+            int choiceIndex = i;
+            int eventID = currentEvent.eventID;
+            Button choiceButton = ButtonPanel.Find("Choice" + (i + 1)).GetComponent<Button>();
+            choiceButton.onClick.RemoveAllListeners();
+            choiceButton.onClick.AddListener(() => { ClickChoice(choiceIndex, eventID); });
+            choiceButton.GetComponentInChildren<Text>().text = currentEvent.eventOptions[i].name + "\n" + currentEvent.eventOptions[i].description; 
         }
         // 调整选项大小和位置，并且将多余的选项隐藏
         if (currentEvent.optionNumbers == 1)
@@ -323,7 +298,7 @@ public class EventManager : MonoBehaviour
         {
             if (pendingEvents.ContainsKey(eventID))
             {
-                throw new Exception("Event already scheduled!");
+                allEvents[eventID].scheduledTurn = dataManager.turn + delayTurn;  // 如果已经在pendingEvents里了，就直接改scheduledTurn
             }
             else
             {
@@ -332,8 +307,9 @@ public class EventManager : MonoBehaviour
                     throw new Exception("Attempt to schedule a triggered unrepeatable event!");
                 }
                 EventBase eventBase = allEvents[eventID];
-                eventBase.scheduledTurn = aroManager.turn + delayTurn;
+                eventBase.scheduledTurn = dataManager.turn + delayTurn;
                 pendingEvents.Add(eventID, eventBase);
+                Debug.Log("Add event " + eventID + " to pendingEvents " + "at turn " + eventBase.scheduledTurn);
             }
         }
         else
@@ -343,7 +319,7 @@ public class EventManager : MonoBehaviour
     }
     public void AbsoluteSchedule(int eventID, int turn)
     {
-        if (turn < aroManager.turn)
+        if (turn < dataManager.turn)
         {
             throw new Exception("Invalid turn!");
         }
@@ -351,7 +327,7 @@ public class EventManager : MonoBehaviour
         {
             if (pendingEvents.ContainsKey(eventID))
             {
-                throw new Exception("Event already scheduled!");
+                allEvents[eventID].scheduledTurn = turn;    // 如果已经在pendingEvents里了，就直接改scheduledTurn
             }
             else
             {

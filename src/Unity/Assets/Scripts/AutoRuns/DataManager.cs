@@ -23,30 +23,37 @@ public class DataManager : MonoBehaviour
         turn++;
         cur_stage = (int)dt_obj.Value.GetData("热度等级");
         dt_obj.Value.Refresh();
-        float curseProb = 0.0f;
+        float randomChoice = 0;
         switch (cur_stage)
         {
             case 0:
                 break; // 等级0说明游戏还没开始，不触发
             case 1:
-                curseProb = 0.35f;
-                if (Random.Range(0, 1) < curseProb)
-                {
-                    gameObject.GetComponent<EventManager>().ShowEvent(6); //触发等级1的骂街
-                }
-                break;
+                break; // 等级-酝酿阶段，不触发
             case 2:
-                curseProb = 0.50f;
-                if (Random.Range(0, 1) < curseProb)
+                // 50%概率触发等级1的骂街
+                randomChoice = Random.Range(0f, 1f);
+                // Debug.Log("randomChoice: " + randomChoice);
+                if (randomChoice < 0.5)
                 {
-                    gameObject.GetComponent<EventManager>().ShowEvent(7); //触发等级2的骂街
+                    gameObject.GetComponent<EventManager>().ShowEvent(6);
                 }
                 break;
             case 3:
-                curseProb = 0.65f;
-                if (Random.Range(0, 1) < curseProb)
+                // 25%概率触发等级2的骂街 25%概率触发门口泼粪 25概率出现门口喷漆
+                randomChoice = Random.Range(0f, 1f);
+                Debug.Log("randomChoice: " + randomChoice);
+                if (randomChoice < 0.25)
                 {
-                    gameObject.GetComponent<EventManager>().ShowEvent(8); //触发等级3的骂街
+                    gameObject.GetComponent<EventManager>().ShowEvent(7);
+                }
+                else if (randomChoice < 0.5 && randomChoice >= 0.25)
+                {
+                    gameObject.GetComponent<EventManager>().ShowEvent(16);
+                }
+                else if (randomChoice < 0.75 && randomChoice >= 0.5)
+                {
+                    gameObject.GetComponent<EventManager>().ShowEvent(19);
                 }
                 break;
             default:
