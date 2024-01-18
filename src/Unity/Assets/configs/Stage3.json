@@ -1,0 +1,306 @@
+[
+    {
+        "eventID": 21,
+        "eventName": "事态升级——新闻的力量",
+        "content": "由于本次事件的重大影响，一些地方的新闻媒体也盯上了这巨大流量。某日，一个名为“**观察”的地方媒体在自己的某音账号上发布了一段报道视频。语焉不详的视频加上评论区“热心网友”的解说，进一步激发了网友的怒火。",
+        "image": "Assets/Events/Images/11.jpg",
+        "optionNumbers":1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "糟糕！",
+                "description": "身处舆论的漩涡中心，你已然无力自救（心理压力+20）",
+                "buffs": "18,4",
+                "duration": "0,10",
+                "upcoming_events": "22",
+                "event_delays": "1"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度",
+                "threshold": 7000,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 22,
+        "eventName": "公司楼下的不速之客",
+        "content": "视频发布的第二天，你在下班走出公司的时候被一群人团团围住。人群中有义愤填膺的正义网友向你丢臭鸡蛋和烂菜叶;有急不可耐的记者向你伸来话筒，嘶吼着一个个尖锐的问题...",
+        "image": "Assets/Events/Images/12.jpg",
+        "optionNumbers": 3,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "尝试穿过人群",
+                "description": "“都不要挤，别挤别挤，诶哟！”",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "23",
+                "event_delays": "0"
+            },
+            {
+                "name": "向记者解释",
+                "description": "你期待一个公正的报道",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "24",
+                "event_delays": "0"
+            },
+            {
+                "name": "尝试返回公司大楼",
+                "description": "至少我还能往回走",
+                "buffs": "16",
+                "duration": "0",
+                "upcoming_events": "25",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": -1,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 23,
+        "eventName": "踩踏事件",
+        "content": "你试图穿过人群，但是人群的愤怒情绪已经到达了顶点，他们不顾一切地向你扑来，你被踩倒在地，被人群踩踏...",
+        "image": "Assets/Events/Images/14.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "救...命...",
+                "description": "你被人潮淹没，逐步失去了意识...",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "26",
+                "event_delays": "1"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": -1,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 24,
+        "eventName": "侥幸脱身",
+        "content": "在你回答记者问题的时候，警察前来维持秩序并驱散了人群，你总算得以脱身回家。",
+        "image": "Assets/Events/Images/13.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "筋疲力尽",
+                "description": "暴怒的人群使你心有余悸（心理压力+20）",
+                "buffs": "18",
+                "duration": "0",
+                "upcoming_events": "27",
+                "event_delays": "1"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": -1,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 25,
+        "eventName": "机智脱险",
+        "content": "你返回了公司大楼，保安将愤怒的人群阻挡在楼外。你拿出手机报警，待警察赶到并驱散人群，你才得以脱身。",
+        "image": "Assets/Events/Images/15.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "感谢人民警察...",
+                "description": "差点回不来了（心理压力-5）",
+                "buffs": "14",
+                "duration": "0",
+                "upcoming_events": "28",
+                "event_delays": "1"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": -1,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 26,
+        "eventName": "恶魔之死",
+        "content": "经过一夜的抢救，医生最终不得不宣布你的死亡。正义的人们发起了激情的狂欢，对恶魔以及尝试挽救恶魔生命的人掀起一场终末的审判。然而，这一切已经都与你无关了。",
+        "image": "Assets/Events/Images/16.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "晚安，好梦...",
+                "description": "...",
+                "buffs": "99",
+                "duration": "1000",
+                "upcoming_events": "none",
+                "event_delays": ""
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 27,
+        "eventName": "吸血蝙蝠",
+        "content": "显然，接受采访并不会给你带来想要的公正：跟随网上舆论的媒体受人追捧；呼吁客观理性的媒体被批拿钱办事。",
+        "image":"Assets/Events/Images/17.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "真相何在！",
+                "description": "你几乎要崩溃（心理压力+20）",
+                "buffs": "18",
+                "duration": "0",
+                "upcoming_events": "29",
+                "event_delays": "1"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 28,
+        "eventName": "舆论管控",
+        "content": "事件的发酵引发了有关部门的重视，互联网上的相关舆论被管制。尽管没有大规模的封号举措，但有关话题的曝光度断崖式下跌。",
+        "image": "Assets/Events/Images/18.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "希望事情早日结束",
+                "description": "舆论管控给了你一丝喘息的机会（热度增速-20%，压力-20，热度-100000）",
+                "buffs": "24",
+                "duration": "30",
+                "upcoming_events": "none",
+                "event_delays": "0"
+            }
+        ],
+        "conditions" : [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 29,
+        "eventName": "热搜！",
+        "content": "不出意外，你的名字登上了热搜。你害怕愤怒的网友做出出格的举动...",
+        "image": "Assets/Events/Images/19.jpg",
+        "optionNumbers": 2,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "不要伤害我！",
+                "description": "你的心理承受极限（心理压力+20）",
+                "buffs": "22",
+                "duration": "5",
+                "upcoming_events": "none",
+                "event_delays": "0"
+            },
+            {
+                "name": "以死明志！",
+                "description": "倘若我死了，这一切是否就会结束...",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "30",
+                "event_delays": "1"
+            }
+        ],
+        "conditions" : [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 30,
+        "eventName": "恶魔之死",
+        "content": "在一个深夜，你在家里的浴缸中结束了自己的生命。直到三天后，破门而入的警察才发现了你的尸体。你自杀的消息上了热搜，但这与你已经没有关系了",
+        "image": "Assets/Events/Images/20.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "今夜无人入睡...",
+                "description": "...",
+                "buffs": "99",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": ""
+            }
+        ],
+        "conditions" : [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    }
+]

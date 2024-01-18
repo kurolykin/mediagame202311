@@ -6,8 +6,13 @@ public class DataManager : MonoBehaviour
 {
     public int turn = 0;
     KeyValuePair<string, DataObject> dt_obj;
-
+    EventManager eventManager;
     int cur_stage = 0;
+
+    void Start()
+    {
+        eventManager = gameObject.GetComponent<EventManager>();
+    }
     public void Register(string name, DataObject DataObject)
     {
         dt_obj = new KeyValuePair<string, DataObject>(name, DataObject);
@@ -36,7 +41,7 @@ public class DataManager : MonoBehaviour
                 // Debug.Log("randomChoice: " + randomChoice);
                 if (randomChoice < 0.5)
                 {
-                    gameObject.GetComponent<EventManager>().ShowEvent(6);
+                    eventManager.ShowEvent(6);
                 }
                 break;
             case 3:
@@ -45,15 +50,59 @@ public class DataManager : MonoBehaviour
                 Debug.Log("randomChoice: " + randomChoice);
                 if (randomChoice < 0.25)
                 {
-                    gameObject.GetComponent<EventManager>().ShowEvent(7);
+                    eventManager.ShowEvent(7);
                 }
                 else if (randomChoice < 0.5 && randomChoice >= 0.25)
                 {
-                    gameObject.GetComponent<EventManager>().ShowEvent(16);
+                    eventManager.ShowEvent(16);
                 }
                 else if (randomChoice < 0.75 && randomChoice >= 0.5)
                 {
-                    gameObject.GetComponent<EventManager>().ShowEvent(19);
+                    eventManager.ShowEvent(19);
+                }
+                break;
+            case 4:
+                // 前置条件：触发热搜
+                // 20%概率触发等级3的骂街 20%概率触发父亲生病 20%概率触发母亲生病 20%概率触发被辞退
+                //除了骂街 都只能触发一次
+                randomChoice = Random.Range(0f, 1f);
+                Debug.Log("randomChoice: " + randomChoice);
+                if (randomChoice < 0.2)
+                {
+                    if (eventManager.allEvents.ContainsKey(31) && eventManager.allEvents[31].isTriggered == false)
+                    {
+                        eventManager.ShowEvent(31);
+                    }
+                    else
+                    {
+                        eventManager.ShowEvent(8);
+                    }
+                }
+                else if (randomChoice < 0.4 && randomChoice >=0.2)
+                {
+                    if (eventManager.allEvents.ContainsKey(32) && eventManager.allEvents[32].isTriggered == false)
+                    {
+                        eventManager.ShowEvent(33);
+                    }
+                    else
+                    {
+                        eventManager.ShowEvent(8);
+                    }
+                }
+                else if (randomChoice < 0.6 && randomChoice >= 0.4)
+                {
+                    if (eventManager.allEvents.ContainsKey(33) && eventManager.allEvents[33].isTriggered == false)
+                    {
+                        eventManager.ShowEvent(34);
+                    }
+                    else
+                    {
+                        eventManager.ShowEvent(8);
+                    }
+                }
+                else if (randomChoice < 0.8 && randomChoice >= 0.6)
+                {
+                        eventManager.ShowEvent(8);
                 }
                 break;
             default:

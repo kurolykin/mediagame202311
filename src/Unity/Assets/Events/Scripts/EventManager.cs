@@ -115,7 +115,7 @@ public class EventBase
 public class EventManager : MonoBehaviour
 {
     private Dictionary<int, EventBase> pendingEvents = new Dictionary<int, EventBase>(); // 待选事件列表
-    private Dictionary<int, EventBase> allEvents = new Dictionary<int, EventBase>(); // 所有事件列表
+    public Dictionary<int, EventBase> allEvents = new Dictionary<int, EventBase>(); // 所有事件列表
     [SerializeField]
     GameObject eventPanel;
     public int userChoiceIndex = -1;
@@ -233,6 +233,7 @@ public class EventManager : MonoBehaviour
                     this.pendingEvents.Remove(eventID);
                 }
                 //重置玩家选择
+                currentEvent.isTriggered = true;
                 userChoiceIndex = -1;
                 gameObject.GetComponent<Main>().UpdateUI();
             }

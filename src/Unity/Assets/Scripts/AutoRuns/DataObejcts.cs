@@ -26,6 +26,8 @@ public class DataObject : MonoBehaviour
         this._data.Add("热度等级", 0);
         this._data.Add("压力增速", 0);
         this._data.Add("精力", 100);
+        this._data.Add("上热搜了", 0);
+        this._data.Add("死亡方式", 0);
     }
 
     // 初始化方法，用于设置数据和buff

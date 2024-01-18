@@ -6,7 +6,7 @@
         "image": "Assets/Events/Images/11.jpg",
         "optionNumbers": 2,
         "isTriggered": false,
-        "isRepeatable": false,
+        "isRepeatable": true,
         "scheduledTurn": 0,
         "eventOptions": [
             {
@@ -42,7 +42,7 @@
         "image": "Assets/Events/Images/12.jpg",
         "optionNumbers": 1,
         "isTriggered": false,
-        "isRepeatable": false,
+        "isRepeatable": true,
         "scheduledTurn": 0,
         "eventOptions": [
             {
@@ -70,7 +70,7 @@
         "image": "Assets/Events/Images/13.jpg",
         "optionNumbers": 1,
         "isTriggered": false,
-        "isRepeatable": false,
+        "isRepeatable": true,
         "scheduledTurn": 0,
         "eventOptions": [
             {
@@ -98,7 +98,7 @@
         "image": "Assets/Events/Images/14.jpg",
         "optionNumbers": 2,
         "isTriggered": false,
-        "isRepeatable": false,
+        "isRepeatable": true,
         "scheduledTurn": 0,
         "eventOptions": [
             {
@@ -134,7 +134,7 @@
         "image": "Assets/Events/Images/15.jpg",
         "optionNumbers": 1,
         "isTriggered": false,
-        "isRepeatable": false,
+        "isRepeatable": true,
         "scheduledTurn": 0,
         "eventOptions": [
             {

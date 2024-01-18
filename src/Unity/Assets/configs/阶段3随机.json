@@ -1,0 +1,242 @@
+[
+    {
+        "eventID": 31,
+        "eventName": "解雇...",
+        "content": "“由于你近期的这些事情，对公司形象造成了很大的影响，给公司带来了很大的损失。你被解雇了，我们公司容不下你这尊大佛！。”告知你这个消息时，人事经理的眼里闪烁着正义的光芒。",
+        "image": "Assets/Events/Images/11.jpg",
+        "optionNumbers": 2,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "天打雷劈",
+                "description": "你久久伫立，无法接受这个打击",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "32",
+                "event_delays": "1"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 32,
+        "eventName": "失业的第一天",
+        "content": "失去事业，失去朋友，被千夫所指，你感觉人生仿佛失去了意义。",
+        "image": "Assets/Events/Images/12.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "一声叹息",
+                "description": "...（心理压力增速+5%）",
+                "buffs": "22",
+                "duration": "15",
+                "upcoming_events": "none",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 33,
+        "eventName": "生病的父亲",
+        "content": "得知你最近的遭遇，你的父亲急火攻心，突发心脏病住院",
+        "image": "Assets/Events/Images/13.jpg",
+        "optionNumbers": 2,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "前去看望",
+                "description": "为什么要让我的家人也卷进来...",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "35",
+                "event_delays": "0"
+            },
+            {
+                "name": "电话问候",
+                "description": "现在露面，只会给家人带来更多伤害...",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "36",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 34,
+        "eventName": "生病的母亲",
+        "content": "得知你最近的遭遇，你的母亲急火攻心，突发脑溢血中风",
+        "image": "Assets/Events/Images/13.jpg",
+        "optionNumbers": 2,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "前去看望",
+                "description": "为什么要让我的家人也卷进来...",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "37",
+                "event_delays": "0"
+            },
+            {
+                "name": "电话问候",
+                "description": "现在露面，只会给家人带来更多伤害...",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "38",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 35,
+        "eventName": "父亲的盛怒",
+        "content": "到达医院，迎面而来的是父亲的指责“你滚！我没你这个儿子！做这种见不得人的事情，我老李家的脸都被你丢光了！”",
+        "image": "Assets/Events/Images/14.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "无言以对",
+                "description": "你本以为家人会站在你这边...（心理压力+30）",
+                "buffs": "20",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 36,
+        "eventName": "父亲的眼泪",
+        "content": "电话接通父亲的声音有些颤抖“儿子，你怎么了？”听见父亲哽咽的声音，你潸然泪下...",
+        "image": "Assets/Events/Images/15.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "有家真好",
+                "description": "...(心理压力-30)",
+                "buffs": "21",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 37,
+        "eventName": "母亲的眼泪",
+        "content": "站在病床前，尽管母亲此时已经瘫痪在床，失去了说话的能力。但是你从妈妈噙着泪的双眼中看到了满满的心疼。随即，你和守在病房前的父亲相拥而泣。",
+        "image": "Assets/Events/Images/16.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "有家真好",
+                "description": "...(心理压力-30)",
+                "buffs": "21",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 38,
+        "eventName": "暴怒的母亲",
+        "content": "电话接通，母亲刺耳的声音从话筒中传出：“你还有脸给我打电话！做这种见不得人的事情，我老李家的脸都被你丢光了！我没你这个儿子！”",
+        "image": "Assets/Events/Images/17.jpg",
+        "optionNumbers": 1, 
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "无言以对",
+                "description": "你本以为家人会站在你这边...（心理压力+30）",
+                "buffs": "20",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    }
+]
