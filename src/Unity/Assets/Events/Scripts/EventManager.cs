@@ -120,7 +120,7 @@ public class EventManager : MonoBehaviour
     GameObject eventPanel;
     public int userChoiceIndex = -1;
     [SerializeField]
-    public AROManager aroManager;
+    public DataManager aroManager;
     [SerializeField]
     BuffManager buffManager;
     // Start is called before the first frame update
@@ -228,6 +228,41 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    //强制触发事件
+    public void ShowEvent(int eventID)
+    {
+        EventBase currentEvent = allEvents[eventID];
+        showWindow(currentEvent);
+        while (true)
+        {
+            if (userChoiceIndex >= 0 && userChoiceIndex < currentEvent.optionNumbers)
+            {
+                Debug.Log("User choice: " + userChoiceIndex);
+                Option selectedOption = currentEvent.eventOptions[userChoiceIndex];
+                if (selectedOption.buffs.Count > 0)
+                {
+                    foreach (KeyValuePair<int, int> buff in selectedOption.buffs)
+                    {
+                        // 批量设置buff
+                        buffManager.ActivateBuff(buff.Key, buff.Value);
+                    }
+                }
+                if (selectedOption.upcoming_events.Count > 0)
+                {
+                    foreach (KeyValuePair<int, int> upcoming_event in selectedOption.upcoming_events)
+                    {
+                        //批量设置接续
+                        RelativeSchedule(upcoming_event.Key, upcoming_event.Value);
+                    }
+                }
+                //关闭事件窗口
+                eventPanel.SetActive(false);
+                //重置玩家选择
+                userChoiceIndex = -1;
+                break;
+            }
+        }
+    }
     public void ClickChoice(int choiceIndex)
     {
         userChoiceIndex = choiceIndex;

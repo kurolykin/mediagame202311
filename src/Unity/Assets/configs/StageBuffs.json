@@ -1,0 +1,78 @@
+[
+  {
+    "BuffID": 0,
+    "BuffName": "网爆-开始",
+    "BuffType": "Equal",
+    "TargetObject": "player",
+    "Duration": 1,
+    "TargetEffects": {
+      "热度等级": 1
+    }
+  },
+  {
+    "BuffID": 1,
+    "BuffName": "网爆-序幕",
+    "BuffType": "Addition",
+    "TargetObject": "player",
+    "Duration": 100000,
+    "TargetEffects": {
+      "压力增速": 0.025,
+      "热度增速": 0.04
+    }
+  },
+  {
+    "BuffID": 2,
+    "BuffName": "网爆-增长",
+    "BuffType": "Addition",
+    "TargetObject": "player",
+    "Duration": 100000,
+    "TargetEffects": {
+      "压力增速": 0.05,
+      "热度增速": 0.32
+    }
+  },
+  {
+    "BuffID": 3,
+    "BuffName": "网爆-高潮",
+    "BuffType": "Addition",
+    "TargetObject": "player",
+    "Duration": 100000,
+    "TargetEffects": {
+      "压力增速": 0.1,
+      "热度增速": 0.16
+    }
+  },
+  {
+    "BuffID": 4,
+    "BuffName": "网爆-退潮",
+    "BuffType": "Addition",
+    "TargetObject": "player",
+    "Duration": 100000,
+    "TargetEffects": {
+      "压力增速": -0.0025,
+      "热度增速": -0.16
+    }
+  },
+  {
+    "BuffID":5,
+    "BuffName":"网爆-平息",
+    "BuffType":"Addition",
+    "TargetObject":"player",
+    "Duration":100000,
+    "TargetEffects":{
+      "压力增速":-0.075,
+      "热度增速":-0.64
+    }
+  },
+  {
+    "BuffID":6,
+    "BuffName":"网爆-尾声",
+    "BuffType":"Addition",
+    "TargetObject":"player",
+    "Duration":100000,
+    "TargetEffects":{
+      "压力增速":-0.25,
+      "热度增速":-0.80
+    }
+  }
+]

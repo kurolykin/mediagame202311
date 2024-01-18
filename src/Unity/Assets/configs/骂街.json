@@ -1,0 +1,166 @@
+[
+    {
+        "eventID": 6,
+        "title": "谩骂-等级I",
+        "content": "铺天盖地的谩骂袭来。这些莫名其妙的恶意使你压力倍增。",
+        "image": "Assets/Events/Images/1.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": true,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "回怼",
+                "description": "兵来将挡，水来土掩（精力-10，热度+10000）",
+                "buffs": "none",
+                "duration": "",
+                "upcoming_events": "7",
+                "event_delays": "0"
+            },
+            {
+                "name": "忍气吞声",
+                "description": "忍气吞声（热度+1000）",
+                "buffs": "none",
+                "duration": "",
+                "upcoming_events": "8",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 7,
+        "title": "谩骂-等级II",
+        "content": "铺天盖地的谩骂袭来。这些莫名其妙的恶意使你压力倍增。",
+        "image": "Assets/Events/Images/1.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": true,
+        "scheduledTurn": 0,
+        "eventOptions":[
+            {
+                "name":"回怼",
+                "description":"兵来将挡，水来土掩（精力-10，热度+50000）",
+                "buffs":"none",
+                "duration":"",
+                "upcoming_events":"9",
+                "event_delays":"0"
+            },
+            {
+                "name":"忍气吞声",
+                "description":"忍气吞声（热度+5000）",
+                "buffs":"none",
+                "duration":"",
+                "upcoming_events":"10",
+                "event_delays":"0"
+            }
+        ],
+        "conditions":[
+            {
+                "target_object":"player",
+                "target_data":"热度等级",
+                "threshold":1,
+                "operator":"GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 8,
+        "title": "谩骂-等级III",
+        "content": "铺天盖地的谩骂袭来。这些莫名其妙的恶意使你压力倍增。",
+        "image": "Assets/Events/Images/1.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": true,
+        "scheduledTurn": 0,
+        "eventOptions":[
+            {
+                "name":"回怼",
+                "description":"兵来将挡，水来土掩（精力-10，热度+100000）",
+                "buffs":"none",
+                "duration":"",
+                "upcoming_events":"9",
+                "event_delays":"0"
+            },
+            {
+                "name":"忍气吞声",
+                "description":"忍气吞声（热度+10000）",
+                "buffs":"none",
+                "duration":"",
+                "upcoming_events":"10",
+                "event_delays":"0"
+            }
+        ],
+        "conditions":[
+            {
+                "target_object":"player",
+                "target_data":"热度等级",
+                "threshold":2,
+                "operator":"GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID":9,
+        "title":"神清气爽",
+        "content":"你的回怼让对方哑口无言，你的压力减轻了，热度也得到了提升。",
+        "image":"Assets/Events/Images/2.jpg",
+        "optionNumbers":1,
+        "isTriggered":false,
+        "isRepeatable":true,
+        "scheduledTurn":0,
+        "eventOptions":[
+            {
+                "name":"爽！",
+                "description":"心理压力-5",
+                "buffs":"none",
+                "duration":"",
+                "upcoming_events":"8",
+                "event_delays":"1"
+            }
+        ],
+        "conditions":[
+            {
+                "target_object":"player",
+                "target_data":"心理压力",
+                "threshold":0,
+                "operator":"GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID":10,
+        "title":"越想越气",
+        "content":"你的忍气吞声只会使对方更加嚣张，你的压力增加了。",
+        "image":"Assets/Events/Images/8.jpg",
+        "optionNumbers":1,
+        "isTriggered":false,
+        "isRepeatable":true,
+        "scheduledTurn":0,
+        "eventOptions":[
+            {
+                "name":"忍一时乳腺增生...",
+                "description":"心理压力+5",
+                "buffs":"none",
+                "duration":"",
+                "upcoming_events":"9",
+                "event_delays":"1"
+            }
+        ],
+        "conditions":[
+            {
+                "target_object":"player",
+                "target_data":"心理压力",
+                "threshold":0,
+                "operator":"GreaterThan"
+            }
+        ]
+    }
+]

@@ -1,0 +1,150 @@
+[
+    {
+        "eventID": 1,
+        "title": "发帖...",
+        "content": "你在互联网上发布了一个求助帖子，希望得到网友的支持和帮助。此时的你，还不知道将要面对什么",
+        "image": "Assets/Events/Images/1.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": true,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "确定",
+                "description": "美好的一天！",
+                "buffs": "none",
+                "duration": "",
+                "upcoming_events": "2",
+                "event_delays": "1"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": -1,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 2,
+        "title": "不太友善...",
+        "content": "浏览昨天发的贴子，你发现评论区有一些不友好的言论，这时候你打算...",
+        "image": "Assets/Events/EGEvents.jpg",
+        "optionNumbers": 2,
+        "isTriggered": false,
+        "isRepeatable": true,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "置之不理",
+                "description": "清者自清！",
+                "buffs": "none",
+                "duration": "",
+                "upcoming_events": "3",
+                "event_delays": "4"
+            },
+            {
+                "name": "回击",
+                "description": "你算个什么***",
+                "buffs": "none",
+                "duration": "",
+                "upcoming_events": "4",
+                "event_delays": "5"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度",
+                "threshold": 200,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 3,
+        "title": "他怎么自己一个人骂嗨了...?",
+        "content": "有些人的恶意是天然的...（也不知道他们是不是吃饱了撑的）",
+        "image": "Assets/Events/EGEvents.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": true,
+        "scheduledTurn": 20,
+        "eventOptions": [
+            {
+                "name": "好吧",
+                "description": "但愿他们别做的太过火...",
+                "buffs": "none",
+                "duration": "",
+                "upcoming_events": "5",
+                "event_delays": "3"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 4,
+        "title": "对骂",
+        "content": "你绞尽脑汁，旁征博引，从白天辩论到晚上，总算把对方怼哑火了",
+        "image": "Assets/Events/EGEvents.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": true,
+        "scheduledTurn": 20,
+        "eventOptions": [
+            {
+                "name": "跑什么啊",
+                "description": "明明是自己说不过我了~",
+                "buffs": "none",
+                "duration": "",
+                "upcoming_events": "5",
+                "event_delays": "3"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 5,
+        "title": "黄色谣言",
+        "content": "互联网上突然出现了一则关于你的黄色谣言。很显然，之前那位不友好的网友并不打算善罢甘休",
+        "image": "Assets/Events/Images/5.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": true,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "网爆开始了",
+                "description": "我要怎么办？",
+                "buffs": "0,2",
+                "duration": "0,100000",
+                "upcoming_events": "none",
+                "event_delays": ""
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    }
+]
