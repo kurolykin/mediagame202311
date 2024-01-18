@@ -13,7 +13,7 @@
                 "name": "糟糕！",
                 "description": "身处舆论的漩涡中心，你已然无力自救（心理压力+20）",
                 "buffs": "18,4",
-                "duration": "0,10",
+                "duration": "0,100",
                 "upcoming_events": "22",
                 "event_delays": "1"
             }

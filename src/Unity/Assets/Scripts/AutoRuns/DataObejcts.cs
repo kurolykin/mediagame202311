@@ -22,9 +22,9 @@ public class DataObject : MonoBehaviour
         this._data.Add("热度", 1000);
         this._data.Add("心理压力", 10);
         this._data.Add("取证进度", 0);
-        this._data.Add("热度增速", 0);
+        this._data.Add("热度增速", -0.05f);
         this._data.Add("热度等级", 0);
-        this._data.Add("压力增速", 0);
+        this._data.Add("压力增速", -0.05f);
         this._data.Add("精力", 100);
         this._data.Add("上热搜了", 0);
         this._data.Add("死亡方式", 0);

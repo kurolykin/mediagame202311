@@ -1,0 +1,326 @@
+[
+    {
+        "eventID": 39,
+        "eventName": "网暴-退潮",
+        "content": "互联网上的正义之师从不擅长打持久战。他们不断追猎新的热点，来刺激其嗜血的灵魂。当你感觉正处在至暗时刻时，黎明的曙光早已悄然划破天际。",
+        "image": "Assets/Events/Images/11.jpg",
+        "optionNumbers":1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "这会是至暗时刻吗",
+                "description": "...",
+                "buffs": "5",
+                "duration": "10000",
+                "upcoming_events": "40",
+                "event_delays": "5"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度",
+                "threshold": 300000,
+                "operator": "LessThan"
+            }
+        ]
+    },
+    {
+        "eventID": 40,
+        "eventName": "消失的谩骂声",
+        "content": "你的名字从热搜中消失了，网暴的谩骂声也渐渐消失。你的心情好了许多，但是你仍然感到不安。你不知道这一切是否真的结束了",
+        "image": "Assets/Events/Images/12.jpg",
+        "optionNumbers": 3,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "让一切回归正轨",
+                "description": "...",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "42",
+                "event_delays": "0"
+            },
+            {
+                "name": "不能遗忘的伤...",
+                "description": "永不...遗忘...",
+                "buffs": "none",
+                "duration": "0",
+                "upcoming_events": "45,44",
+                "event_delays": "3,3"
+            },
+            {
+                "name": "罪恶不应被遗忘",
+                "description": "如何寻求真正的正义...",
+                "buffs": "16",
+                "duration": "0",
+                "upcoming_events": "42",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度",
+                "threshold": 10000,
+                "operator": "LessThan"
+            }
+        ]
+    },
+    {
+        "eventID": 41,
+        "eventName": "再一次向阳而生",
+        "content": "或许你还要花费一段事件从网暴事件的余波中走出来，但你早已找到了生活应有的轨迹。",
+        "image": "Assets/Events/Images/14.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "新生",
+                "description": "...",
+                "buffs": "99",
+                "duration": "1000",
+                "upcoming_events": "none",
+                "event_delays": "1"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "心理压力",
+                "threshold": 20,
+                "operator": "LessThanOrEqualTo"
+            }
+        ]
+    },
+    {
+        "eventID": 42,
+        "eventName": "新的工作",
+        "content": "你在一家小公司找到了一份工作，虽然工资不高，但胜在轻松愉快。你回到了朝九晚五的规律生活。",
+        "image": "Assets/Events/Images/13.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "新的开始",
+                "description": "你的心情好了许多（心理压力-20）",
+                "buffs": "19",
+                "duration": "0",
+                "upcoming_events": "43",
+                "event_delays": "2"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": -1,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 43,
+        "eventName": "家人的陪伴",
+        "content": "你去看望了你的父母。尽管他们和你一样，尚未从这场风波中走出来，但团聚还是让你感到很温暖。",
+        "image": "Assets/Events/Images/15.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "有家真好",
+                "description": "你的心情好了许多（心理压力-20）",
+                "buffs": "19",
+                "duration": "0",
+                "upcoming_events": "41",
+                "event_delays": "1"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": -1,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 44,
+        "eventName": "遗忘也是一种治愈",
+        "content": "也许你还有伤痛没有治愈，也许你还有真相亟待探明。但你最终选择遗忘，因为将一切深究到底会让你再次遍体鳞伤。",
+        "image": "Assets/Events/Images/16.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "晚安，好梦...",
+                "description": "...",
+                "buffs": "99",
+                "duration": "1000",
+                "upcoming_events": "none",
+                "event_delays": ""
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "心理压力",
+                "threshold": 50,
+                "operator": "LessThanOrEqualTo"
+            }
+        ]
+    },
+    {
+        "eventID": 45,
+        "eventName": "永不遗忘...",
+        "content": "尽管一切都已经过去，但你依然无法抚平内心的伤疤。或许服用药物能给你带来一夜安寝，但梦醒时分总是心如刀绞。",
+        "image":"Assets/Events/Images/17.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "祝你一夜酣眠...",
+                "description": "...",
+                "buffs": "97",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": "0"
+            }
+        ],
+        "conditions": [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 50,
+                "operator": "GreaterThanOrEqualTo"
+            }
+        ]
+    },
+    {
+        "eventID": 46,
+        "eventName": "一纸诉状",
+        "content": "经过了一段时间的调查，你和你的律师搜集了足够的证据，准备向网暴者发起诉讼。你知道这是一场艰苦的战斗，但你相信法律会给你一个公正的结果。",
+        "image": "Assets/Events/Images/20.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 0,
+        "eventOptions": [
+            {
+                "name": "丧钟为谁而鸣",
+                "description": "...",
+                "buffs": "99",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": ""
+            }
+        ],
+        "conditions" : [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 0,
+                "operator": "GreaterThan"
+            }
+        ]
+    },
+    {
+        "eventID": 47,
+        "eventName": "Hiding from the world.",
+        "content": "长期的精神压力让你不堪重负。失眠、噩梦、幻觉时刻困扰着你。即便在越来越少的清醒时刻，你都在想如何逃离这个炼狱般的世界。终于，在半梦半醒之中，你用尖刀划开自己的手腕。",
+        "image": "Assets/Events/Images/20.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 1,
+        "eventOptions": [
+            {
+                "name": "今夜无人入睡",
+                "description": "...",
+                "buffs": "99",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": ""
+            }
+        ],
+        "conditions" : [
+            {
+                "target_object": "player",
+                "target_data": "心理压力",
+                "threshold": 100,
+                "operator": "GreaterThanOrEqualTo"
+            }
+        ]
+    },
+    {
+        "eventID": 48,
+        "eventName": "永恒的黄金梦乡",
+        "content": "由于长期劳累，你的身体早早透支。某天夜里，你拖着疲惫的身躯进入梦乡，却再也没有醒来",
+        "image": "Assets/Events/Images/20.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 1,
+        "eventOptions": [
+            {
+                "name": "今夜无人入睡",
+                "description": "...",
+                "buffs": "99",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": ""
+            }
+        ],
+        "conditions" : [
+            {
+                "target_object": "player",
+                "target_data": "精力",
+                "threshold": -100,
+                "operator": "LessThanOrEqualTo"
+            }
+        ]
+    },
+    {
+        "eventID": 49,
+        "eventName": "喧嚣永不停歇",
+        "content": "也许你的事件有一种神奇的魔力，或者你已然找到了与网暴共存的方法。无论如何，周身的喧嚣声已经不再让你感到烦躁，反而成为了你生活的一部分。",
+        "image": "Assets/Events/Images/20.jpg",
+        "optionNumbers": 1,
+        "isTriggered": false,
+        "isRepeatable": false,
+        "scheduledTurn": 1,
+        "eventOptions": [
+            {
+                "name": "今夜无人入睡",
+                "description": "...",
+                "buffs": "99",
+                "duration": "0",
+                "upcoming_events": "none",
+                "event_delays": ""
+            }
+        ],
+        "conditions" : [
+            {
+                "target_object": "player",
+                "target_data": "热度等级",
+                "threshold": 100,
+                "operator": "GreaterThanOrEqualTo"
+            }
+        ]
+    }
+]

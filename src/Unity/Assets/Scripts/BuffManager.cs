@@ -173,11 +173,17 @@ namespace BuffSystem
             buff.OnAdd();
             gameObject.GetComponent<Main>().UpdateUI();
         }
+        public void DeactivateBuff(int buffID)
+        {
+            BuffBase buff = allBuffs[buffID];
+            buff.OnRemove();
+            gameObject.GetComponent<Main>().UpdateUI();
+        }
         public void RegisterBuff(BuffBase buff)
         {
             allBuffs.Add(buff.buffID, buff);
         }
-        //不需要RemoveBuff，因为buff的移除是由buff自己的OnRemove()函数完成的
+        
         public void ReadBuffsFromJson(string jsonpath)
         {
             string json_str = System.IO.File.ReadAllText(jsonpath);
