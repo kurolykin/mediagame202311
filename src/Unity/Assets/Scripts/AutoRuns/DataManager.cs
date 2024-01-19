@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using BuffSystem;
 public class DataManager : MonoBehaviour
 {
     public int turn = 0;
     KeyValuePair<string, DataObject> dt_obj;
     EventManager eventManager;
+    BuffManager buffManager;
     int cur_stage = 0;
 
     void Start()
     {
         eventManager = gameObject.GetComponent<EventManager>();
+        buffManager = gameObject.GetComponent<BuffManager>();
     }
     public void Register(string name, DataObject DataObject)
     {
@@ -80,7 +82,7 @@ public class DataManager : MonoBehaviour
                 }
                 else if (randomChoice < 0.4 && randomChoice >=0.2)
                 {
-                    if (eventManager.allEvents.ContainsKey(32) && eventManager.allEvents[32].isTriggered == false)
+                    if (eventManager.allEvents.ContainsKey(33) && eventManager.allEvents[33].isTriggered == false)
                     {
                         eventManager.ShowEvent(33);
                     }
@@ -91,7 +93,7 @@ public class DataManager : MonoBehaviour
                 }
                 else if (randomChoice < 0.6 && randomChoice >= 0.4)
                 {
-                    if (eventManager.allEvents.ContainsKey(33) && eventManager.allEvents[33].isTriggered == false)
+                    if (eventManager.allEvents.ContainsKey(34) && eventManager.allEvents[34].isTriggered == false)
                     {
                         eventManager.ShowEvent(34);
                     }
@@ -104,7 +106,18 @@ public class DataManager : MonoBehaviour
                 {
                         eventManager.ShowEvent(8);
                 }
+                if (turn >= 35 || (this.eventManager.JudgeCondition(this.eventManager.allEvents[39].conditions)  && turn>30 ))
+                {
+                    this.buffManager.DeactivateBuff(4);
+                    this.eventManager.ShowEvent(39);
+                }
                 break;
+            case 5:
+                if (turn >= 75)
+                {
+                    this.eventManager.ShowEvent(49);
+                }
+            break;
             default:
                 throw new System.Exception("热度等级错误");
         }

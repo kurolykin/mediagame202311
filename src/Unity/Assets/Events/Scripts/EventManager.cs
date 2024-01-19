@@ -6,7 +6,6 @@ using UnityEngine.UI;
 using BuffSystem;
 using System.IO;
 using Newtonsoft.Json;
-// 这个文件还没修改完！
 
 // 选择结构体定义
 public struct Option
@@ -126,7 +125,6 @@ public class EventManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // TODO: 从文件中读取所有事件
         // 绑定按钮
         Button[] buttons = eventPanel.transform.Find("Buttons").GetComponentsInChildren<Button>();
     }
@@ -248,7 +246,7 @@ public class EventManager : MonoBehaviour
         // 设置事件窗口的内容
         eventPanel.transform.Find("Content").GetComponent<Text>().text = currentEvent.content;
         // 设置事件窗口的图片
-        eventPanel.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(currentEvent.image);
+        eventPanel.transform.Find("Image").GetComponent<Image>().sprite = ImageUtil.LoadFromFile(currentEvent.image);
         Transform ButtonPanel = eventPanel.transform.Find("Buttons");
         // 设置事件窗口的选项
         for (int i = 0; i < currentEvent.optionNumbers; i++)

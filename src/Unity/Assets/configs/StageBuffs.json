@@ -59,14 +59,14 @@
   },
   {
     "BuffID":5,
-    "BuffName":"网爆-平息",
+    "BuffName":"网爆退潮",
     "BuffType":"Addition",
     "TargetObject":"player",
     "Duration":5,
     "TargetEffects":{
       "压力增速":-0.075,
       "热度增速":-0.64,
-      "热度等级":1
+      "热度等级":5
     }
   },
   {

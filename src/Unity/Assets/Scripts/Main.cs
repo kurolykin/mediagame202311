@@ -57,6 +57,7 @@ public class Main : MonoBehaviour
         this.eventManager.ReadEventsFromJson("Assets/configs/Stage3.json");
         this.eventManager.ReadEventsFromJson("Assets/configs/家门破坏.json");
         this.eventManager.ReadEventsFromJson("Assets/configs/阶段3随机.json");
+        this.eventManager.ReadEventsFromJson("Assets/configs/Stage4.json");
         this.eventManager.PrintEvents();
 
 
