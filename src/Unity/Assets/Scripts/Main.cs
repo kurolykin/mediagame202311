@@ -43,7 +43,7 @@ public class Main : MonoBehaviour
 
         this.aroManager = gameObject.GetComponent<AROManager>();
         this.aroManager.Register("fans",this.fans);
-        this.aroManager.Register("riotPower",this.riotPowerManager);
+        this.aroManager.Register("riotpower",this.riotPowerManager);
 
         this.buffManager = gameObject.GetComponent<BuffManager>();
         this.buffManager.ReadBuffsFromJson("Assets/configs/Buffs.json");
