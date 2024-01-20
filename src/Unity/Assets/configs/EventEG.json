@@ -281,30 +281,7 @@
         ]
        
     },
-    {
-        "eventID": 10,
-        "title": "决赛取消",
-        "content": "浪费行为迎来了各路媒体的口诛笔伐，节目组受到舆论压力，决定取消决赛",
-        "image": "Assets/image/qcgg.png",
-        "optionNumbers": 1,
-        "isTriggered": false,
-        "isRepeatable": false,
-        "scheduledTurn": 100,
-        "eventOptions": [
-            {
-                "name": "虽然不知道发生了什么，但是好可怕的样子",
-                "description": "你运营的社群受到了大量黑粉的攻击，粉丝大量流失",
-                "buffs": "12",
-                "duration": "1"
-                
-                
-                
-            }
-            
-          
-        ]
-       
-    },
+    
     {
         "eventID": 11,
         "title": "整治行动",
@@ -401,7 +378,7 @@
             {
                 "name": "战斗，爽",
                 "description": "你决定放任粉丝，既然冲突会带来流量，那为什么放弃这个机会呢",
-                "buffs": "18",
+                "buffs": "15",
                 "duration": "1"
                 
                 
@@ -412,39 +389,7 @@
         ]
         
     },
-    {
-        "eventID": 14,
-        "title": "粉丝冲突",
-        "content": "随着粉丝群体的扩大，狂热的粉丝也越来越多，线下甚至产生了狂热粉丝和黑粉的冲突",
-        "image": "Assets/image/chongtu.png",
-        "optionNumbers": 1,
-        "isTriggered": false,
-        "isRepeatable": false,
-        "scheduledTurn": 13,
-        "eventOptions": [
-            {
-                "name": "进行劝导",
-                "description": "你决定疏解粉丝间的矛盾，即使这会导致部分狂热粉丝的流失",
-                "buffs": "19",
-                "duration": "1"
-                
-                
-                
-            }, 
-            {
-                "name": "战斗，爽",
-                "description": "你决定放任粉丝，既然冲突会带来流量，那为什么放弃这个机会呢",
-                "buffs": "20",
-                "duration": "1"
-                
-                
-                
-            }
-            
-          
-        ]
-        
-    },
+  
     {
         "eventID": 15,
         "title": "演艺公司内讧",
@@ -575,7 +520,7 @@
             {
                 "name": "默默忍受",
                 "description": "你决定暂时忍受网络暴力，不做公开回应，以期待舆论逐渐冷却。",
-                "buffs": "65",
+                "buffs": "32",
                 "duration": "2"
             }
         ]

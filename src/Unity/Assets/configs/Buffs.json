@@ -1,23 +1,393 @@
 [
   {
     "BuffID": 1,
-    "BuffName": "生育警察",
+    "BuffName": "老大哥在看着你",
     "BuffType": "Addition",
-    "TargetObject": "fans",
-    "Duration": 10,
+    "TargetObject": "riotpower",
+    "Duration": 5,
     "TargetEffects": {
-      "僵尸粉": 100
+      "riotpower": 1
     }
   },
   {
     "BuffID": 2,
-    "BuffName": "计划生育",
-    "BuffType": "Multiplication",
+    "BuffName": "Merry Christmas!",
+    "BuffType": "Addition",
     "TargetObject": "fans",
-    "Duration": 5,
+    "Duration": 3,
     "TargetEffects": {
-      "路人粉": 0.97,
-      "真爱粉": 0.88
+      "黑粉": 30,
+      "真爱粉": 50
     }
+  },
+  {
+    "BuffID": 3,
+    "BuffName": "中国人不过洋节！",
+    "BuffType": "Addition",
+    "TargetObject": "fans",
+    "Duration": 3,
+    "TargetEffects": {
+      
+      "路人粉":-100
+    }
+  },
+  
+  {
+    "BuffID": 4,
+    "BuffName": "活动宣传",
+    "BuffType": "Addition",
+    "TargetObject": "fans",
+    "Duration": 4,
+    "TargetEffects": {
+        "路人粉": 100,
+        "真爱粉": 50,
+        "僵尸粉": 200
+    }
+},
+{
+  "BuffID": 4,
+  "BuffName": "活动宣传",
+  "BuffType": "Addition",
+  "TargetObject": "fans",
+  "Duration": 4,
+  "TargetEffects": {
+      "路人粉": 100,
+      "真爱粉": 50,
+      "僵尸粉": 200
   }
+},
+{
+  "BuffID": 5,
+  "BuffName": "引导消费",
+  "BuffType": "Addition",
+  "TargetObject": "fans",
+  "Duration": 5,
+  "TargetEffects": {
+      "路人粉": 200,
+      "真爱粉": 100,
+      "僵尸粉": 500
+  }
+},
+{
+  "BuffID": 6,
+  "BuffName": "大举鼓动",
+  "BuffType": "Addition",
+  "TargetObject": "fans",
+  "Duration": 6,
+  "TargetEffects": {
+      "路人粉": 500,
+      "真爱粉": 200,
+      "僵尸粉": 1000
+  }
+},
+{
+  "BuffID": 7,
+  "BuffName": "差不多得了",
+  "BuffType": "Addition",
+  "TargetObject": "riotpower",
+  "Duration": 1,
+  "TargetEffects": {
+      "riotpower": 10
+  }
+},
+{
+  "BuffID": 8,
+  "BuffName": "一把子冲了",
+  "BuffType": "Addition",
+  "TargetObject": "fans",
+  "Duration": 1,
+  "TargetEffects": {
+      "路人粉": 500,
+      "真爱粉": 200,
+      "僵尸粉": 1000
+  }
+},
+{
+  "BuffID": 9,
+  "BuffName": "告一段落",
+  "BuffType": "Addition",
+  "TargetObject": "fans",
+  "Duration": 1,
+  "TargetEffects": {
+      "路人粉": 500,
+      "真爱粉": 200,
+      "僵尸粉": 1000
+  }
+
+},
+{
+  "BuffID": 10,
+  "BuffName": "通报批评",
+  "BuffType": "Addition",
+  "TargetObject": "riotpower",
+  "Duration": 1,
+  "TargetEffects": {
+      "riotpower": 30
+      
+  }
+
+},
+{
+  "BuffID": 11,
+  "BuffName": "暴雷",
+  "BuffType": "Addition",
+  "TargetObject": "fans",
+  "Duration": 1,
+  "TargetEffects": {
+      "路人粉": -500,
+      "真爱粉": -200,
+      "僵尸粉": -1000
+  }
+
+},
+{
+  "BuffID": 13,
+  "BuffName": "整治",
+  "BuffType": "Addition",
+  "TargetObject": "fans",
+  "Duration": 1,
+  "TargetEffects": {
+      "路人粉": -500,
+      "真爱粉": -200,
+      "僵尸粉": -1000
+  }
+
+},
+
+{
+  "BuffID": 14,
+  "BuffName": "切割",
+  "BuffType": "Addition",
+  "TargetObject": "fans",
+  "Duration": 1,
+  "TargetEffects": {
+      "路人粉": 300,
+      "真爱粉": 100,
+      "僵尸粉": -300
+  }
+
+},
+
+{
+  "BuffID": 15,
+  "BuffName": "引战",
+  "BuffType": "Addition",
+  "TargetObject": "fans",
+  "Duration": 1,
+  "TargetEffects": {
+      "路人粉": 400,
+     
+      "僵尸粉": -300
+  }
+
+},
+{
+  "BuffID": 16,
+  "BuffName": "维护",
+  "BuffType": "Addition",
+  "TargetObject": "fans",
+  "Duration": 1,
+  "TargetEffects": {
+      "路人粉": -300,
+      "真爱粉": -100
+    
+  }
+
+},
+{
+  "BuffID": 17,
+  "BuffName": "劝导",
+  "BuffType": "Addition",
+  "TargetObject": "fans",
+  "Duration": 1,
+  "TargetEffects": {
+      "路人粉": 500,
+      "真爱粉": -100,
+      "僵尸粉": 300
+  }
+
+},[
+  {
+      "BuffID": 21,
+      "BuffName": "调停",
+      "BuffType": "Addition",
+      "TargetObject": "riotpower",
+      "Duration": 1,
+      "TargetEffects": {
+          "riotpower": -10
+         
+      }
+  },
+  {
+      "BuffID": 22,
+      "BuffName": "回应",
+      "BuffType": "Addition",
+      "TargetObject": "fans",
+      "Duration": 1,
+      "TargetEffects": {
+          "路人粉": 200,
+          "真爱粉": 100,
+          "僵尸粉": 500
+      }
+  },
+  {
+      "BuffID": 23,
+      "BuffName": "回馈",
+      "BuffType": "Addition",
+      "TargetObject": "fans",
+      "Duration": 1,
+      "TargetEffects": {
+          "路人粉": 500,
+          "真爱粉": 200,
+          "僵尸粉": 1000
+      }
+  },
+  {
+      "BuffID": 24,
+      "BuffName": "低调",
+      "BuffType": "Addition",
+      "TargetObject": "riotpower",
+      "Duration": 1,
+      "TargetEffects": {
+          "riotpower": -10
+      }
+  },
+  {
+      "BuffID": 25,
+      "BuffName": "道歉",
+      "BuffType": "Addition",
+      "TargetObject": "fans",
+      "Duration": 1,
+      "TargetEffects": {
+          "路人粉": 150,
+          "真爱粉": -20,
+          "僵尸粉": 300
+      }
+  },
+  {
+      "BuffID": 26,
+      "BuffName": "沉默",
+      "BuffType": "Addition",
+      "TargetObject": "riotpower",
+      "Duration": 1,
+      "TargetEffects": {
+          "riotpower": -5
+         
+      }
+  },
+  {
+      "BuffID": 27,
+      "BuffName": "解释",
+      "BuffType": "Addition",
+      "TargetObject": "fans",
+      "Duration": 1,
+      "TargetEffects": {
+          "路人粉": 200,
+          "真爱粉": 50
+        
+      }
+  },
+  {
+      "BuffID": 28,
+      "BuffName": "法律行动",
+      "BuffType": "Addition",
+      "TargetObject": "fans",
+      "Duration": 1,
+      "TargetEffects": {
+          "路人粉": 150,
+          "真爱粉":20,
+          "僵尸粉":200,
+          "黑粉":100
+      }
+  },
+  {
+      "BuffID": 29,
+      "BuffName": "澄清",
+      "BuffType": "Addition",
+      "TargetObject": "fans",
+      "Duration": 1,
+      "TargetEffects": {
+          "路人粉": 180,
+          "真爱粉": 90,
+          
+          "黑粉":-100
+      }
+  },
+  {
+      "BuffID": 30,
+      "BuffName": "信任",
+      "BuffType": "Addition",
+      "TargetObject": "fans",
+      "Duration": 1,
+      "TargetEffects": {
+          "路人粉": 100,
+          "真爱粉": 60,
+          "僵尸粉": 100
+      }
+  },
+  {
+    "BuffID": 31,
+    "BuffName": "声明",
+    "BuffType": "Addition",
+    "TargetObject": "fans",
+    "Duration": 1,
+    "TargetEffects": {
+        "路人粉": 300,
+        "真爱粉": 60,
+        "僵尸粉": 100,
+        "黑粉":30
+    }
+},
+[
+  
+  {
+      "BuffID": 32,
+      "BuffName": "隐忍",
+      "BuffType": "Addition",
+      "TargetObject": "fans",
+      "Duration": 1,
+      "TargetEffects": {
+          "路人粉": 250,
+          "真爱粉": 20,
+          "僵尸粉": 100
+      }
+  },
+  {
+      "BuffID": 33,
+      "BuffName": "举报冒充",
+      "BuffType": "Addition",
+      "TargetObject": "riotpower",
+      "Duration": 1,
+      "TargetEffects": {
+          "riotpower": -5
+         
+      }
+  },
+  {
+      "BuffID": 34,
+      "BuffName": "辟谣",
+      "BuffType": "Addition",
+      "TargetObject": "fans",
+      "Duration": 1,
+      "TargetEffects": {
+          "路人粉": 200,
+          "僵尸粉":300,
+          "真爱粉":20
+      }
+  },
+  {
+      "BuffID": 35,
+      "BuffName": "粉丝宣传",
+      "BuffType": "Addition",
+      "TargetObject": "fans",
+      "Duration": 1,
+      "TargetEffects": {
+          "路人粉": 300,
+          "真爱粉": 80,
+          "僵尸粉": 100,
+          "黑粉":100
+      }
+  }
+]
+]
 ]

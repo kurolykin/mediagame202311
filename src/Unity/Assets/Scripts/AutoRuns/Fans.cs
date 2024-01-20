@@ -11,8 +11,8 @@ public class Fans : AutoRunObjectBase
             {"僵尸粉", 1500.0f},
             {"路人粉", 500.0f},
             {"真爱粉", 50.0f},
-            {"黑粉", 100.0f}
-            { "粉丝", 0.0f}
+            {"黑粉", 100.0f},
+            { "粉丝", 2150.0f}
         };
         this._buffs = new List<BuffBase>();
         Debug.Log("Fans Start");
@@ -52,7 +52,18 @@ public class Fans : AutoRunObjectBase
         }
         Debug.Log("Reveal Fans ! \n" + "Fans Data: " + dataStr + " Fans Buff: " + buffStr);
     }
+    private void UpdateFansData()
+    {
+        // 计算粉丝总量
+        float totalFans = 0.0f;
+        foreach (float fanCount in this._data.Values)
+        {
+            totalFans += fanCount;
+        }
 
+        // 设置总粉丝数量
+        this._data["粉丝"] = totalFans;
+    }
     public override string RevealBuff()
     {
         string buffStr = "";
