@@ -27,7 +27,6 @@
     "TargetObject": "fans",
     "Duration": 3,
     "TargetEffects": {
-      
       "路人粉":-100
     }
   },
@@ -43,18 +42,6 @@
         "真爱粉": 50,
         "僵尸粉": 200
     }
-},
-{
-  "BuffID": 4,
-  "BuffName": "活动宣传",
-  "BuffType": "Addition",
-  "TargetObject": "fans",
-  "Duration": 4,
-  "TargetEffects": {
-      "路人粉": 100,
-      "真爱粉": 50,
-      "僵尸粉": 200
-  }
 },
 {
   "BuffID": 5,

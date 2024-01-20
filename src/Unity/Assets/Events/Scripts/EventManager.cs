@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using BuffSystem;
 using System.IO;
 using Newtonsoft.Json;
 // 这个文件还没修改完！
